@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire de don</title>
+  </head>
+  <body>
+    <h1>Faire un don</h1>
+
+    <form method="get">
+      <h2>Montant du don</h2>
+      <fieldset>
+        <legend>Type de versement</legend>
+        <input
+          type="radio"
+          id="versementUnique"
+          name="versement"
+          required
+          value="versementUnique"
+        /><label for="versementUnique">Don Unique</label>
+        <br />
+        <input
+          type="radio"
+          id="versementMensuel"
+          name="versement"
+          required
+          value="versementMensuel"
+        /><label for="versementMensuel">Don Mensuel</label>
+        <br />
+        <input
+          type="radio"
+          id="versementAnnuel"
+          name="versement"
+          required
+          value="versementAnnuel"
+        /><label for="versementAnnuel">Don Annuel</label>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>Montant</legend>
+        <input
+          type="radio"
+          id="montantPetit"
+          name="montant"
+          required
+          value="versementUnique"
+        /><label for="versementUnique">20$</label>
+        <br />
+        <input
+          type="radio"
+          id="versementMensuel"
+          name="montant"
+          required
+          value="versementMensuel"
+        /><label for="versementMensuel">50$</label>
+        <br />
+        <input
+          type="radio"
+          id="versementAnnuel"
+          name="montant"
+          required
+          value="versementAnnuel"
+        /><label for="versementAnnuel">100$</label>
+        <br />
+        <input
+          type="radio"
+          id="versementAnnuel"
+          name="montant"
+          required
+          value="versementAnnuel"
+        /><label for="versementAnnuel">200$</label>
+        <br />
+        <input
+          type="radio"
+          id="versementPersonnalise"
+          name="montant"
+          required
+          value="versementPersonnalise"
+        /><label for="versementPersonnalise">Personnalisé</label>
+        <input
+          type="text"
+          id="montant"
+          name="montant"
+          minlength="2"
+          maxlength="4"
+          size="10"
+        />
+      </fieldset>
+
+      <p>
+        * Ici ce champs va apparaitre selon le type de versement choisi et
+        afficher la bonne information. * <br />
+
+        Un don mensuel vous sera chargé le premier de chaque mois pour les 12
+        prochains mois, pour un total de XXX au total.
+      </p>
+
+      <h2>Coordonnées du donneur</h2>
+      <fieldset>
+        <label for="nom">Nom</label><br />
+        <input type="text" id="nom" name="nom" />
+        <br /><br />
+
+        <label for="prenom">Prenom</label><br />
+        <input type="text" id="prenom" name="prenom" />
+        <br /><br />
+
+        <label for="Email">Email</label><br />
+        <input type="text" id="Email" name="Email" />
+        <br /><br />
+
+        <label for="Telephone">Téléphone</label><br />
+        <input type="text" id="Telephone" name="Telephone" />
+        <br />
+      </fieldset>
+      <br />
+
+      <fieldset>
+        <label for="Adress">Adress</label><br />
+        <input type="text" id="Adress" name="Adress" />
+        <br /><br />
+
+        <label for="Ville">Ville</label><br />
+        <input type="text" id="Ville" name="Ville" />
+        <br /><br />
+
+        <label for="CodePostal">Code Postal</label><br />
+        <input type="text" id="CodePostal" name="CodePostal" />
+        <br /><br />
+
+        <label for="Province">Province</label><br />
+        <input type="text" id="Province" name="Province" />
+        <br />
+      </fieldset>
+      <br />
+      <h2>Détails de Paiement</h2>
+      <label for="NumeroCarte">Numéro de la carte</label><br />
+      <input type="text" id="NumeroCarte" name="NumeroCarte" />
+      <br /><br />
+
+      <label for="DateExpirationCarte">Date d'expiration</label><br />
+      <input type="text" id="DateExpiration" name="DateExpiration" />
+      <br /><br />
+
+      <label for="CodeSecuriteCarte">Code de sécurité</label><br />
+      <input type="text" id="CodeSecuriteCarte" name="CodeSecuriteCarte" />
+      <br /><br />
+
+      <h2>Validation</h2>
+
+      <input type="submit" value="Envoyer" />
+    </form>
+  </body>
+</html>
