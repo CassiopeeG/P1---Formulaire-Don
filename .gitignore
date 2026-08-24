@@ -1,0 +1,6 @@
+**/.DS_Store
+**/.git
+node_modules/
+**/.css
+**/wp-config.php
+dart-sass/
