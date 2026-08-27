@@ -3,154 +3,312 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="script" href="main.ts" defer>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulaire de don</title>
   </head>
-  <body>
-    <h1 class="text-4xl font-bold text-blue-600">Faire un don</h1>
+  <body class="m-2 flex flex-col items-center justify-center">
+    <h1 class="text-4xl font-bold m-10 text-center">Faire un don à Écosia</h1>
 
-        <form method="get">
-      <h2>Montant du don</h2>
-      <fieldset>
+    <!------------------------ Début du formulaire ------------------------>
+    <form action="merci.html" method="get">
+      <!------------- Première Section: Montant du don ------------->
+      <div id="section1">
+      <h2 class="text-2xl font-bold m-2">Montant du don</h2>
+
+      <!-- Choix bouton radio type de versement -->
+      <fieldset class="border-2 border-black-500 p-2">
         <legend>Type de versement</legend>
         <input
           type="radio"
+          required="required"
           id="versementUnique"
           name="versement"
-          required
           value="versementUnique"
-        /><label for="versementUnique">Don Unique</label>
-        <br />
+        /><label for="versementUnique">Don Unique</label><br />
+
         <input
           type="radio"
+          required="required"
           id="versementMensuel"
           name="versement"
-          required
           value="versementMensuel"
-        /><label for="versementMensuel">Don Mensuel</label>
-        <br />
+        /><label for="versementMensuel">Don Mensuel</label><br />
+
         <input
           type="radio"
+          required="required"
           id="versementAnnuel"
           name="versement"
-          required
           value="versementAnnuel"
-        /><label for="versementAnnuel">Don Annuel</label>
+        /><label for="versementAnnuel">Don Annuel</label><br />
+
+        <p class="erreur">Veuillez selectionner un type de versement</p>
       </fieldset>
-      <br />
-      <fieldset>
+
+      <!-- Choix montant -->
+      <fieldset class="border-2 border-black-500 p-2">
         <legend>Montant</legend>
         <input
           type="radio"
+          required="required"
           id="montantPetit"
           name="montant"
           required
           value="versementUnique"
-        /><label for="versementUnique">20$</label>
-        <br />
+        /><label for="versementUnique">20$</label><br />
+
         <input
           type="radio"
+          required="required"
           id="versementMensuel"
           name="montant"
           required
           value="versementMensuel"
-        /><label for="versementMensuel">50$</label>
-        <br />
+        /><label for="versementMensuel">50$</label><br />
+
         <input
           type="radio"
+          required="required"
           id="versementAnnuel"
           name="montant"
           required
           value="versementAnnuel"
-        /><label for="versementAnnuel">100$</label>
-        <br />
+        /><label for="versementAnnuel">100$</label><br />
+
         <input
           type="radio"
+          required="required"
           id="versementAnnuel"
           name="montant"
           required
           value="versementAnnuel"
-        /><label for="versementAnnuel">200$</label>
-        <br />
+        /><label for="versementAnnuel">200$</label><br />
+
         <input
           type="radio"
+          required="required"
           id="versementPersonnalise"
           name="montant"
           required
           value="versementPersonnalise"
         /><label for="versementPersonnalise">Personnalisé</label>
         <input
-          type="text"
+          class="border-2 border-black-500"
+          type="number"
           id="montant"
           name="montant"
-          minlength="2"
-          maxlength="4"
-          size="10"
+          min="2"
+          max="4"
+          size="6"
         />
+        <p class="erreur">Veuillez selectionner un montant</p>
       </fieldset>
 
       <p>
         * Ici ce champs va apparaitre selon le type de versement choisi et
-        afficher la bonne information. * <br />
-
-        Un don mensuel vous sera chargé le premier de chaque mois pour les 12
-        prochains mois, pour un total de XXX au total.
+        afficher la bonne information. * Un don mensuel vous sera chargé le
+        premier de chaque mois pour les 12 prochains mois, pour un total de XXX
+        au total.
       </p>
 
-      <h2>Coordonnées du donneur</h2>
-      <fieldset>
-        <label for="nom">Nom</label><br />
-        <input type="text" id="nom" name="nom" />
-        <br /><br />
+      <button
+        id="etape1"
+        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+      >
+        Suivant
+      </button>
+      </div>
 
-        <label for="prenom">Prenom</label><br />
-        <input type="text" id="prenom" name="prenom" />
-        <br /><br />
+      <!------------- Deuxième Section: Coordonnées du donneur ------------->
+      <div id="section2">
+      <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
+      <fieldset class="border-2 border-black-500 p-2">
+        <label for="nom">Nom</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="text"
+          id="nom"
+          name="nom"
+          required="required"
+          autocomplete="family-name"
+          pattern="([A-zÀ-ž\s\-\']+)"
+          title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+        />
 
-        <label for="Email">Email</label><br />
-        <input type="text" id="Email" name="Email" />
-        <br /><br />
+        <label for="prenom">Prenom</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="text"
+          id="prenom"
+          name="prenom"
+          required="required"
+          autocomplete="given-name"
+          pattern="([A-zÀ-ž\s\-\']+)"
+          title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+        />
 
-        <label for="Telephone">Téléphone</label><br />
-        <input type="text" id="Telephone" name="Telephone" />
-        <br />
+        <label for="email">Email</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="email"
+          id="email"
+          name="email"
+          required="required"
+          autocomplete="email"
+          pattern="(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)"
+          title="format email"
+        />
+
+        <label for="Telephone">Téléphone</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="number"
+          id="Telephone"
+          name="Telephone"
+          required="required"
+          max="9999999999"
+          autocomplete="tel"
+        />
       </fieldset>
-      <br />
 
-      <fieldset>
-        <label for="Adress">Adress</label><br />
-        <input type="text" id="Adress" name="Adress" />
-        <br /><br />
+      <fieldset class="border-2 border-black-500 p-2">
+        <label for="Adress">Adresse</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="text"
+          id="Adress"
+          name="Adress"
+          required="required"
+          autocomplete="street-address"
+          pattern="([A-zÀ-ž\s\-\']+)"
+        />
 
-        <label for="Ville">Ville</label><br />
-        <input type="text" id="Ville" name="Ville" />
-        <br /><br />
+        <label for="Ville">Ville</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="text"
+          id="Ville"
+          name="Ville"
+          required="required"
+        />
 
-        <label for="CodePostal">Code Postal</label><br />
-        <input type="text" id="CodePostal" name="CodePostal" />
-        <br /><br />
-
-        <label for="Province">Province</label><br />
-        <input type="text" id="Province" name="Province" />
-        <br />
+        <label for="Province">Province</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="text"
+          id="Province"
+          name="Province"
+          required="required"
+        />
       </fieldset>
-      <br />
-      <h2>Détails de Paiement</h2>
-      <label for="NumeroCarte">Numéro de la carte</label><br />
-      <input type="text" id="NumeroCarte" name="NumeroCarte" />
-      <br /><br />
 
-      <label for="DateExpirationCarte">Date d'expiration</label><br />
-      <input type="text" id="DateExpiration" name="DateExpiration" />
-      <br /><br />
+      <label for="CodePostal">Code Postal <small>ex: A1A 1A1</small></label>
+      <input
+        class="border-2 border-black-500 p-2"
+        type="text"
+        id="CodePostal"
+        name="CodePostal"
+        required="required"
+        autocomplete="postal-code"
+        pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
+      />
 
-      <label for="CodeSecuriteCarte">Code de sécurité</label><br />
-      <input type="text" id="CodeSecuriteCarte" name="CodeSecuriteCarte" />
-      <br /><br />
+      <button
+        id="etape2"
+        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+      >
+        Suivant
+      </button>
+      </div>
 
-      <h2>Validation</h2>
+      <!------------- Troisième Section: Détails de Paiement ------------->
+      <div id="section3">
+      <h2 class="text-2xl font-bold m-2">Détails de Paiement</h2>
+      <label for="NumeroCarte">Numéro de la carte</label>
+      <input
+        class="border-2 border-black-500 p-2"
+        type="number"
+        id="NumeroCarte"
+        name="NumeroCarte"
+        required="required"
+        max="9999999999999999"
+      />
 
-      <input type="submit" value="Envoyer" />
+      <label for="DateExpirationCarte">Date d'expiration</label>
+      <label for="MoisExpiration">Mois</label>
+      <select
+        class="border-2 border-black-500 p-2"
+        id="MoisExpiration"
+        name="MoisExpiration"
+        required
+      >
+        <option value="" disabled selected>Choisir un mois</option>
+        <option value="01">Janvier</option>
+        <option value="02">Février</option>
+        <option value="03">Mars</option>
+        <option value="04">Avril</option>
+        <option value="05">Mai</option>
+        <option value="06">Juin</option>
+        <option value="07">Juillet</option>
+        <option value="08">Août</option>
+        <option value="09">Septembre</option>
+        <option value="10">Octobre</option>
+        <option value="11">Novembre</option>
+        <option value="12">Décembre</option>
+      </select>
+
+      <label for="AnneeExpiration">Année</label>
+      <select
+        class="border-2 border-black-500 p-2"
+        id="AnneeExpiration"
+        name="AnneeExpiration"
+        required
+      >
+        <option value="" disabled selected>Choisir une année</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+        <option value="2031">2031</option>
+        <option value="2032">2032</option>
+        <option value="2033">2033</option>
+        <option value="2034">2034</option>
+        <option value="2035">2035</option>
+      </select>
+
+      <label for="CodeSecuriteCarte">Code de sécurité</label>
+      <input
+        class="border-2 border-black-500 p-2"
+        type="number"
+        id="CodeSecuriteCarte"
+        name="CodeSecuriteCarte"
+        required="number"
+        min="000"
+        max="999"
+      /><br />
+
+      <button
+        id="etape3"
+        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+      >
+        Suivant
+      </button>
+
+      <!------------- Dernière Section: Validation ------------->
+      <div id="section4">
+      <h2 class="text-2xl font-bold m-2">Validation</h2>
+
+      <input
+      id="envoyer"
+        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+        type="submit"
+        value="Envoyer"
+      /><br />
+      </div>
     </form>
 
     <div id="app"></div>
