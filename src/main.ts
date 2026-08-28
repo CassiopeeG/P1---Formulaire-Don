@@ -5,12 +5,37 @@ const btnEtape2 = document.getElementById("etape2");
 const btnEtape3 = document.getElementById("etape3");
 const btnEnvoyer = document.getElementById("envoyer");
 
+const btnNavEtape1 = document.getElementById("navEtapes_etape1");
+const btnNavEtape2 = document.getElementById("navEtapes_etape2");
+const btnNavEtape3 = document.getElementById("navEtapes_etape3");
+const btnNavEtape4 = document.getElementById("navEtapes_etape4");
+
 const section1 = document.getElementById("section1");
 const section2 = document.getElementById("section2");
 const section3 = document.getElementById("section3");
 const section4 = document.getElementById("section4");
 
 function initialiser(): void {
+    if (section1) {
+    section1.classList.remove("hidden");
+  }
+  if (section2) {
+    section2.classList.add("hidden");
+  }
+  if (section3) {
+    section3.classList.add("hidden");
+  }
+  if (section4) {
+    section4.classList.add("hidden");
+  }
+}
+
+function passerEtape1(event: MouseEvent): void {
+  console.log("fonction passerEtape1");
+
+  if (section1) {
+    section1.classList.remove("hidden");
+  }
   if (section2) {
     section2.classList.add("hidden");
   }
@@ -70,6 +95,7 @@ function passerEtape4(event: MouseEvent): void {
   }
   if (section4) {
     section4.classList.remove("hidden");
+    console.log(section4.classList);
   }
 }
 
@@ -77,16 +103,32 @@ function envoyer(event: MouseEvent): void {
   console.log("fonction envoyer");
 }
 
+//addEventListener des boutons "suivant"
 if (btnEtape1) {
   btnEtape1.addEventListener("click", passerEtape2);
 }
-
 if (btnEtape2) {
   btnEtape2.addEventListener("click", passerEtape3);
 }
-
 if (btnEtape3) {
   btnEtape3.addEventListener("click", passerEtape4);
+}
+
+//addEVentListener des boutons de navigation d'étapes
+if(btnNavEtape1){
+  btnNavEtape1.addEventListener("click", passerEtape1);
+}
+
+if(btnNavEtape2){
+  btnNavEtape2.addEventListener("click", passerEtape2);
+}
+
+if(btnNavEtape3){
+  btnNavEtape3.addEventListener("click", passerEtape3);
+}
+
+if(btnNavEtape4){
+  btnNavEtape4.addEventListener("click", passerEtape4);
 }
 
 if (btnEnvoyer) {

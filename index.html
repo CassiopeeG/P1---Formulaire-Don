@@ -8,11 +8,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulaire de don</title>
   </head>
-  <body class="m-2 flex flex-col items-center justify-center">
+  <body class="m-2 m-auto flex flex-col items-center justify-center max-w-8/12 ">
     <h1 class="text-4xl font-bold m-10 text-center">Faire un don à Écosia</h1>
 
     <!------------------------ Début du formulaire ------------------------>
     <form action="merci.html" method="get">
+
+      <!-- Navigateur de sections -->
+      <div class="navEtapes_">
+        <button
+        id="navEtapes_etape1"
+        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
+        <span><img src="" alt="Montant du Don"></span>
+        </button>
+
+        <button
+        id="navEtapes_etape2"
+        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
+        <span><img src="" alt="Coordonnées du donneur"></span>
+        </button>
+
+        <button
+        id="navEtapes_etape3"
+        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
+        <span><img src="" alt="Détails de Paiement"></span>
+        </button>
+
+        <button
+        id="navEtapes_etape4"
+        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
+        <span><img src="" alt="Validation"></span>
+        </button>
+      </div>
+      
       <!------------- Première Section: Montant du don ------------->
       <div id="section1">
       <h2 class="text-2xl font-bold m-2">Montant du don</h2>
@@ -124,7 +152,7 @@
       <!------------- Deuxième Section: Coordonnées du donneur ------------->
       <div id="section2">
       <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
-      <fieldset class="border-2 border-black-500 p-2">
+      <fieldset class="border-2 border-black-500 p-2>
         <label for="nom">Nom</label>
         <input
           class="border-2 border-black-500 p-2"
@@ -297,6 +325,7 @@
       >
         Suivant
       </button>
+       </div>
 
       <!------------- Dernière Section: Validation ------------->
       <div id="section4">
