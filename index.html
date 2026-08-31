@@ -17,32 +17,32 @@
       <!-- Navigateur de sections -->
       <div class="navEtapes_">
         <button
-        id="navEtapes_etape1"
+        id="navEtapes_etape0"
         class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
         <span><img src="" alt="Montant du Don"></span>
         </button>
 
         <button
-        id="navEtapes_etape2"
+        id="navEtapes_etape1"
         class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
         <span><img src="" alt="Coordonnées du donneur"></span>
         </button>
 
         <button
-        id="navEtapes_etape3"
+        id="navEtapes_etape2"
         class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
         <span><img src="" alt="Détails de Paiement"></span>
         </button>
 
         <button
-        id="navEtapes_etape4"
+        id="navEtapes_etape3"
         class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
         <span><img src="" alt="Validation"></span>
         </button>
       </div>
       
       <!------------- Première Section: Montant du don ------------->
-      <div id="section1">
+      <div id="section0">
       <h2 class="text-2xl font-bold m-2">Montant du don</h2>
 
       <!-- Choix bouton radio type de versement -->
@@ -125,8 +125,8 @@
         <input
           class="border-2 border-black-500"
           type="number"
-          id="montant"
-          name="montant"
+          id="montantPerso"
+          name="montantPerso"
           min="2"
           max="4"
           size="6"
@@ -150,9 +150,9 @@
       </div>
 
       <!------------- Deuxième Section: Coordonnées du donneur ------------->
-      <div id="section2">
+      <div id="section1">
       <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
-      <fieldset class="border-2 border-black-500 p-2>
+      <fieldset class="border-2 border-black-500 p-2">
         <label for="nom">Nom</label>
         <input
           class="border-2 border-black-500 p-2"
@@ -189,12 +189,12 @@
           title="format email"
         />
 
-        <label for="Telephone">Téléphone</label>
+        <label for="telephone">Téléphone</label>
         <input
           class="border-2 border-black-500 p-2"
           type="number"
-          id="Telephone"
-          name="Telephone"
+          id="telephone"
+          name="telephone"
           required="required"
           max="9999999999"
           autocomplete="tel"
@@ -202,42 +202,42 @@
       </fieldset>
 
       <fieldset class="border-2 border-black-500 p-2">
-        <label for="Adress">Adresse</label>
+        <label for="adresse">Adresse</label>
         <input
           class="border-2 border-black-500 p-2"
           type="text"
-          id="Adress"
-          name="Adress"
+          id="adresse"
+          name="adresse"
           required="required"
           autocomplete="street-address"
           pattern="([A-zÀ-ž\s\-\']+)"
         />
 
-        <label for="Ville">Ville</label>
+        <label for="ville">Ville</label>
         <input
           class="border-2 border-black-500 p-2"
           type="text"
-          id="Ville"
-          name="Ville"
+          id="ville"
+          name="ville"
           required="required"
         />
 
-        <label for="Province">Province</label>
+        <label for="province">Province</label>
         <input
           class="border-2 border-black-500 p-2"
           type="text"
-          id="Province"
-          name="Province"
+          id="province"
+          name="province"
           required="required"
         />
       </fieldset>
 
-      <label for="CodePostal">Code Postal <small>ex: A1A 1A1</small></label>
+      <label for="codePostal">Code Postal <small>ex: A1A 1A1</small></label>
       <input
         class="border-2 border-black-500 p-2"
         type="text"
-        id="CodePostal"
-        name="CodePostal"
+        id="codePostal"
+        name="codePostal"
         required="required"
         autocomplete="postal-code"
         pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
@@ -252,24 +252,24 @@
       </div>
 
       <!------------- Troisième Section: Détails de Paiement ------------->
-      <div id="section3">
+      <div id="section2">
       <h2 class="text-2xl font-bold m-2">Détails de Paiement</h2>
-      <label for="NumeroCarte">Numéro de la carte</label>
+      <label for="numeroCarte">Numéro de la carte</label>
       <input
         class="border-2 border-black-500 p-2"
         type="number"
-        id="NumeroCarte"
-        name="NumeroCarte"
+        id="numeroCarte"
+        name="numeroCarte"
         required="required"
         max="9999999999999999"
       />
 
-      <label for="DateExpirationCarte">Date d'expiration</label>
-      <label for="MoisExpiration">Mois</label>
+      <label for="dateExpirationCarte">Date d'expiration</label>
+      <label for="moisExpiration">Mois</label>
       <select
         class="border-2 border-black-500 p-2"
-        id="MoisExpiration"
-        name="MoisExpiration"
+        id="moisExpiration"
+        name="moisExpiration"
         required
       >
         <option value="" disabled selected>Choisir un mois</option>
@@ -287,11 +287,11 @@
         <option value="12">Décembre</option>
       </select>
 
-      <label for="AnneeExpiration">Année</label>
+      <label for="anneeExpiration">Année</label>
       <select
         class="border-2 border-black-500 p-2"
-        id="AnneeExpiration"
-        name="AnneeExpiration"
+        id="anneeExpiration"
+        name="anneeExpiration"
         required
       >
         <option value="" disabled selected>Choisir une année</option>
@@ -308,12 +308,12 @@
         <option value="2035">2035</option>
       </select>
 
-      <label for="CodeSecuriteCarte">Code de sécurité</label>
+      <label for="codeSecuriteCarte">Code de sécurité</label>
       <input
         class="border-2 border-black-500 p-2"
         type="number"
-        id="CodeSecuriteCarte"
-        name="CodeSecuriteCarte"
+        id="codeSecuriteCarte"
+        name="codeSecuriteCarte"
         required="number"
         min="000"
         max="999"
@@ -328,7 +328,7 @@
        </div>
 
       <!------------- Dernière Section: Validation ------------->
-      <div id="section4">
+      <div id="section3">
       <h2 class="text-2xl font-bold m-2">Validation</h2>
 
       <input
