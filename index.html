@@ -4,339 +4,423 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="script" href="main.ts" defer>
+    <link rel="script" href="main.ts" defer />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulaire de don</title>
   </head>
-  <body class="m-2 m-auto flex flex-col items-center justify-center max-w-8/12 ">
+  <body class="m-2 m-auto flex flex-col items-center justify-center max-w-8/12">
     <h1 class="text-4xl font-bold m-10 text-center">Faire un don à Écosia</h1>
 
     <!------------------------ Début du formulaire ------------------------>
     <form action="merci.html" method="get">
-
       <!-- Navigateur de sections -->
-      <div class="navEtapes_">
-        <button
-        id="navEtapes_etape0"
-        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
-        <span><img src="" alt="Montant du Don"></span>
-        </button>
+      <nav aria-label="Étapes du formulaire de don" class="navEtapes_">
+        <ol>
+          <button
+            id="navEtapes_etape0"
+            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
+          >
+            <span><img src="" alt="Montant du Don" /></span>
+          </button>
+          <span class="sr-only">Étape 1</span>
+        </ol>
+        <ol>
+          <button
+            id="navEtapes_etape1"
+            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
+          >
+            <span><img src="" alt="Coordonnées du donneur" /></span>
+          </button>
+          <span class="sr-only">Étape 2</span>
+        </ol>
 
-        <button
-        id="navEtapes_etape1"
-        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
-        <span><img src="" alt="Coordonnées du donneur"></span>
-        </button>
+        <ol>
+          <button
+            id="navEtapes_etape2"
+            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
+          >
+            <span><img src="" alt="Détails de Paiement" /></span>
+          </button>
+          <span class="sr-only">Étape 3</span>
+        </ol>
+        <ol>
+          <button
+            id="navEtapes_etape3"
+            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
+          >
+            <span><img src="" alt="Validation" /></span>
+          </button>
+          <span class="sr-only">Étape 4</span>
+        </ol>
+      </nav>
 
-        <button
-        id="navEtapes_etape2"
-        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
-        <span><img src="" alt="Détails de Paiement"></span>
-        </button>
-
-        <button
-        id="navEtapes_etape3"
-        class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full">
-        <span><img src="" alt="Validation"></span>
-        </button>
-      </div>
-      
       <!------------- Première Section: Montant du don ------------->
       <div id="section0">
-      <h2 class="text-2xl font-bold m-2">Montant du don</h2>
+        <h2 class="text-2xl font-bold m-2">Montant du don</h2>
 
-      <!-- Choix bouton radio type de versement -->
-      <fieldset class="border-2 border-black-500 p-2">
-        <legend>Type de versement</legend>
-        <input
-          type="radio"
-          required="required"
-          id="versementUnique"
-          name="versement"
-          value="versementUnique"
-        /><label for="versementUnique">Don Unique</label><br />
+        <!-- Choix bouton radio type de versement -->
+        <fieldset class="border-2 border-black-500 p-2">
+          <legend>Type de versement</legend>
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_versement"
+            aria-invalid="false"
+            id="versementUnique"
+            name="versement"
+            value="versementUnique"
+          /><label for="versementUnique">Don Unique</label><br />
 
-        <input
-          type="radio"
-          required="required"
-          id="versementMensuel"
-          name="versement"
-          value="versementMensuel"
-        /><label for="versementMensuel">Don Mensuel</label><br />
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_versement"
+            aria-invalid="false"
+            id="versementMensuel"
+            name="versement"
+            value="versementMensuel"
+          /><label for="versementMensuel">Don Mensuel</label><br />
 
-        <input
-          type="radio"
-          required="required"
-          id="versementAnnuel"
-          name="versement"
-          value="versementAnnuel"
-        /><label for="versementAnnuel">Don Annuel</label><br />
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_versement"
+            aria-invalid="false"
+            id="versementAnnuel"
+            name="versement"
+            value="versementAnnuel"
+          /><label for="versementAnnuel">Don Annuel</label><br />
 
-        <p class="erreur">Veuillez selectionner un type de versement</p>
-      </fieldset>
+          <span id="err_versement" role="alert"></span>
+        </fieldset>
 
-      <!-- Choix montant -->
-      <fieldset class="border-2 border-black-500 p-2">
-        <legend>Montant</legend>
-        <input
-          type="radio"
-          required="required"
-          id="montantPetit"
-          name="montant"
-          required
-          value="versementUnique"
-        /><label for="versementUnique">20$</label><br />
+        <!-- Choix montant -->
+        <fieldset class="border-2 border-black-500 p-2">
+          <legend>Montant</legend>
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_montant20"
+            aria-invalid="false"
+            id="montant20"
+            name="montant"
+            value="20"
+          /><label for="montant20">20$</label><br />
 
-        <input
-          type="radio"
-          required="required"
-          id="versementMensuel"
-          name="montant"
-          required
-          value="versementMensuel"
-        /><label for="versementMensuel">50$</label><br />
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_montant50"
+            aria-invalid="false"
+            id="montant50"
+            name="montant"
+            value="50"
+          /><label for="montant50">50$</label><br />
 
-        <input
-          type="radio"
-          required="required"
-          id="versementAnnuel"
-          name="montant"
-          required
-          value="versementAnnuel"
-        /><label for="versementAnnuel">100$</label><br />
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_montant100"
+            aria-invalid="false"
+            id="montant100"
+            name="montant"
+            value="100"
+          /><label for="montant100">100$</label><br />
 
-        <input
-          type="radio"
-          required="required"
-          id="versementAnnuel"
-          name="montant"
-          required
-          value="versementAnnuel"
-        /><label for="versementAnnuel">200$</label><br />
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_montant200"
+            aria-invalid="false"
+            id="montant200"
+            name="montant"
+            value="200"
+          /><label for="montant200">200$</label><br />
 
-        <input
-          type="radio"
-          required="required"
-          id="versementPersonnalise"
-          name="montant"
-          required
-          value="versementPersonnalise"
-        /><label for="versementPersonnalise">Personnalisé</label>
-        <input
-          class="border-2 border-black-500"
-          type="number"
-          id="montantPerso"
-          name="montantPerso"
-          min="2"
-          max="4"
-          size="6"
-        />
-        <p class="erreur">Veuillez selectionner un montant</p>
-      </fieldset>
+          <input
+            type="radio"
+            required
+            aria-required="true"
+            aria-describedby="err_montantPersonnalise"
+            aria-invalid="false"
+            id="montantPersonnalise"
+            name="montant"
+          /><label for="montantPersonnalise">Personnalisé</label>
+          <span id="err_montantPersonnalise"></span>
+          <input
+            class="border-2 border-black-500"
+            type="number"
+            id="montantPerso"
+            name="montantPerso"
+            min="2"
+            max="4"
+            size="6"
+          />
 
-      <p>
-        * Ici ce champs va apparaitre selon le type de versement choisi et
-        afficher la bonne information. * Un don mensuel vous sera chargé le
-        premier de chaque mois pour les 12 prochains mois, pour un total de XXX
-        au total.
-      </p>
+          <!-- //ICI VALIDER LES SPAN ERREUR DES FIELDSET, FAIRE ATTENTION CAUSE LE ID EST PAS RELIÉ À RIEN?? -->
+          <span id="err_montant" role="alert"></span>
+        </fieldset>
 
-      <button
-        id="etape1"
-        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
-      >
-        Suivant
-      </button>
+        <p>
+          * Ici ce champs va apparaitre selon le type de versement choisi et
+          afficher la bonne information. * Un don mensuel vous sera chargé le
+          premier de chaque mois pour les 12 prochains mois, pour un total de
+          XXX au total.
+        </p>
+
+        <button
+          id="etape1"
+          class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+        >
+          Suivant
+        </button>
       </div>
 
       <!------------- Deuxième Section: Coordonnées du donneur ------------->
       <div id="section1">
-      <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
-      <fieldset class="border-2 border-black-500 p-2">
-        <label for="nom">Nom</label>
+        <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
+        <fieldset class="border-2 border-black-500 p-2">
+          <label for="nom">Nom</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="text"
+            id="nom"
+            name="nom"
+            required
+            aria-required="true"
+            aria-describedby="err_nom"
+            aria-invalid="false"
+            autocomplete="family-name"
+            pattern="([A-zÀ-ž\s\-\']+)"
+            title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+          />
+          <span id="err_nom" role="alert"></span>
+
+          <label for="prenom">Prenom</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="text"
+            id="prenom"
+            name="prenom"
+            required
+            aria-required="true"
+            aria-describedby="err_prenom"
+            aria-invalid="false"
+            autocomplete="given-name"
+            pattern="([A-zÀ-ž\s\-\']+)"
+            title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+          />
+          <span id="err_prenom" role="alert"></span>
+
+          <label for="email">Email</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="email"
+            id="email"
+            name="email"
+            required
+            aria-required="true"
+            aria-describedby="err_email"
+            aria-invalid="false"
+            autocomplete="email"
+            pattern="(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)"
+            title="format email"
+          />
+          <span id="err_email" role="alert"></span>
+
+          <label for="telephone">Téléphone</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="number"
+            id="telephone"
+            name="telephone"
+            required
+            aria-required="true"
+            aria-describedby="err_telephone"
+            aria-invalid="false"
+            max="9999999999"
+            autocomplete="tel"
+          />
+          <span id="err_telephone" role="alert"></span>
+        </fieldset>
+
+        <fieldset class="border-2 border-black-500 p-2">
+          <label for="adresse">Adresse</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="text"
+            id="adresse"
+            name="adresse"
+            required
+            aria-required="true"
+            aria-describedby="err_adresse"
+            aria-invalid="false"
+            autocomplete="street-address"
+            pattern="([A-zÀ-ž\s\-\']+)"
+          />
+          <span id="err_adresse" role="alert"></span>
+
+          <label for="ville">Ville</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="text"
+            id="ville"
+            name="ville"
+            required
+            aria-required="true"
+            aria-describedby="err_ville"
+            aria-invalid="false"
+          />
+          <span id="err_ville" role="alert"></span>
+
+          <label for="province">Province</label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="text"
+            id="province"
+            name="province"
+            required
+            aria-required="true"
+            aria-describedby="err_province"
+            aria-invalid="false"
+          />
+          <span id="err_province" role="alert"></span>
+        </fieldset>
+
+        <label for="codePostal">Code Postal <small>ex: A1A 1A1</small></label>
         <input
           class="border-2 border-black-500 p-2"
           type="text"
-          id="nom"
-          name="nom"
-          required="required"
-          autocomplete="family-name"
-          pattern="([A-zÀ-ž\s\-\']+)"
-          title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+          id="codePostal"
+          name="codePostal"
+          required
+          aria-required="true"
+          aria-describedby="err_codePostal"
+          aria-invalid="false"
+          autocomplete="postal-code"
+          pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
         />
+        <span id="err_codePostal" role="alert"></span>
 
-        <label for="prenom">Prenom</label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="text"
-          id="prenom"
-          name="prenom"
-          required="required"
-          autocomplete="given-name"
-          pattern="([A-zÀ-ž\s\-\']+)"
-          title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
-        />
-
-        <label for="email">Email</label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="email"
-          id="email"
-          name="email"
-          required="required"
-          autocomplete="email"
-          pattern="(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)"
-          title="format email"
-        />
-
-        <label for="telephone">Téléphone</label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="number"
-          id="telephone"
-          name="telephone"
-          required="required"
-          max="9999999999"
-          autocomplete="tel"
-        />
-      </fieldset>
-
-      <fieldset class="border-2 border-black-500 p-2">
-        <label for="adresse">Adresse</label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="text"
-          id="adresse"
-          name="adresse"
-          required="required"
-          autocomplete="street-address"
-          pattern="([A-zÀ-ž\s\-\']+)"
-        />
-
-        <label for="ville">Ville</label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="text"
-          id="ville"
-          name="ville"
-          required="required"
-        />
-
-        <label for="province">Province</label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="text"
-          id="province"
-          name="province"
-          required="required"
-        />
-      </fieldset>
-
-      <label for="codePostal">Code Postal <small>ex: A1A 1A1</small></label>
-      <input
-        class="border-2 border-black-500 p-2"
-        type="text"
-        id="codePostal"
-        name="codePostal"
-        required="required"
-        autocomplete="postal-code"
-        pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
-      />
-
-      <button
-        id="etape2"
-        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
-      >
-        Suivant
-      </button>
+        <button
+          id="etape2"
+          class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+        >
+          Suivant
+        </button>
       </div>
 
       <!------------- Troisième Section: Détails de Paiement ------------->
       <div id="section2">
-      <h2 class="text-2xl font-bold m-2">Détails de Paiement</h2>
-      <label for="numeroCarte">Numéro de la carte</label>
-      <input
-        class="border-2 border-black-500 p-2"
-        type="number"
-        id="numeroCarte"
-        name="numeroCarte"
-        required="required"
-        max="9999999999999999"
-      />
+        <h2 class="text-2xl font-bold m-2">Détails de Paiement</h2>
+        <label for="numeroCarte">Numéro de la carte</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="number"
+          id="numeroCarte"
+          name="numeroCarte"
+          required
+          aria-required="true"
+          aria-describedby="err_prenom"
+          aria-invalid="false"
+          max="9999999999999999"
+          autocomplete="cc-number"
+        />
+        <span id="err_" role="alert"></span>
 
-      <label for="dateExpirationCarte">Date d'expiration</label>
-      <label for="moisExpiration">Mois</label>
-      <select
-        class="border-2 border-black-500 p-2"
-        id="moisExpiration"
-        name="moisExpiration"
-        required
-      >
-        <option value="" disabled selected>Choisir un mois</option>
-        <option value="01">Janvier</option>
-        <option value="02">Février</option>
-        <option value="03">Mars</option>
-        <option value="04">Avril</option>
-        <option value="05">Mai</option>
-        <option value="06">Juin</option>
-        <option value="07">Juillet</option>
-        <option value="08">Août</option>
-        <option value="09">Septembre</option>
-        <option value="10">Octobre</option>
-        <option value="11">Novembre</option>
-        <option value="12">Décembre</option>
-      </select>
+        <label for="dateExpirationCarte">Date d'expiration</label>
+        <label for="moisExpiration">Mois</label>
+        <select
+          class="border-2 border-black-500 p-2"
+          id="moisExpiration"
+          name="moisExpiration"
+          aria-required="true"
+          aria-describedby="err_moisExpiration"
+          aria-invalid="false"
+        >
+          <option value="" disabled selected>Choisir un mois</option>
+          <option value="01">Janvier</option>
+          <option value="02">Février</option>
+          <option value="03">Mars</option>
+          <option value="04">Avril</option>
+          <option value="05">Mai</option>
+          <option value="06">Juin</option>
+          <option value="07">Juillet</option>
+          <option value="08">Août</option>
+          <option value="09">Septembre</option>
+          <option value="10">Octobre</option>
+          <option value="11">Novembre</option>
+          <option value="12">Décembre</option>
+        </select>
+        <span id="err_moisExpiration" role="alert"></span>
 
-      <label for="anneeExpiration">Année</label>
-      <select
-        class="border-2 border-black-500 p-2"
-        id="anneeExpiration"
-        name="anneeExpiration"
-        required
-      >
-        <option value="" disabled selected>Choisir une année</option>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
-        <option value="2030">2030</option>
-        <option value="2031">2031</option>
-        <option value="2032">2032</option>
-        <option value="2033">2033</option>
-        <option value="2034">2034</option>
-        <option value="2035">2035</option>
-      </select>
+        <label for="anneeExpiration">Année</label>
+        <select
+          class="border-2 border-black-500 p-2"
+          id="anneeExpiration"
+          name="anneeExpiration"
+          aria-required="true"
+          aria-describedby="err_anneeExpiration"
+          aria-invalid="false"
+          required
+        >
+          <option value="" disabled selected>Choisir une année</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+          <option value="2031">2031</option>
+          <option value="2032">2032</option>
+          <option value="2033">2033</option>
+          <option value="2034">2034</option>
+          <option value="2035">2035</option>
+        </select>
+        <span id="err_anneeExpiration" role="alert"></span>
 
-      <label for="codeSecuriteCarte">Code de sécurité</label>
-      <input
-        class="border-2 border-black-500 p-2"
-        type="number"
-        id="codeSecuriteCarte"
-        name="codeSecuriteCarte"
-        required="number"
-        min="000"
-        max="999"
-      /><br />
+        <label for="codeSecuriteCarte">Code de sécurité</label>
+        <input
+          class="border-2 border-black-500 p-2"
+          type="number"
+          id="codeSecuriteCarte"
+          name="codeSecuriteCarte"
+          required
+          aria-required="true"
+          aria-describedby="err_codeSecuriteCarte"
+          aria-invalid="false"
+          min="000"
+          max="999"
+          autocomplete="cc-csc"
+        />
+        <span id="err_codeSecuriteCarte" role="alert"></span>
+        <br />
 
-      <button
-        id="etape3"
-        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
-      >
-        Suivant
-      </button>
-       </div>
+        <button
+          id="etape3"
+          class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+        >
+          Suivant
+        </button>
+      </div>
 
       <!------------- Dernière Section: Validation ------------->
       <div id="section3">
-      <h2 class="text-2xl font-bold m-2">Validation</h2>
+        <h2 class="text-2xl font-bold m-2">Validation</h2>
 
-      <input
-      id="envoyer"
-        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
-        type="submit"
-        value="Envoyer"
-      /><br />
+        <input
+          id="envoyer"
+          class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+          type="submit"
+          value="Envoyer"
+        /><br />
       </div>
     </form>
 
