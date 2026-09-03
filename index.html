@@ -8,49 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulaire de don</title>
   </head>
-  <body class="m-2 m-auto flex flex-col items-center justify-center max-w-8/12">
+  <body
+    class="m-2 m-auto flex flex-col items-center justify-center max-w-8/12 bg-gray-100"
+  >
     <h1 class="text-4xl font-bold m-10 text-center">Faire un don à Écosia</h1>
 
     <!------------------------ Début du formulaire ------------------------>
-    <form action="merci.html" method="get">
+    <form action="merci.html" method="get" class="bg-white p-3">
       <!-- Navigateur de sections -->
       <nav aria-label="Étapes du formulaire de don" class="navEtapes_">
         <ol>
-          <button
-            id="navEtapes_etape0"
-            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
-          >
-            <span><img src="" alt="Montant du Don" /></span>
-          </button>
-          <span class="sr-only">Étape 1</span>
-        </ol>
-        <ol>
-          <button
-            id="navEtapes_etape1"
-            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
-          >
-            <span><img src="" alt="Coordonnées du donneur" /></span>
-          </button>
-          <span class="sr-only">Étape 2</span>
-        </ol>
+          <li>
+            <span class="sr-only">Étape 0</span>
+            <a href="" id="navEtapes_etape0">
+              <span><img src="" alt="Montant" /></span>
+            </a>
+          </li>
 
-        <ol>
-          <button
-            id="navEtapes_etape2"
-            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
-          >
-            <span><img src="" alt="Détails de Paiement" /></span>
-          </button>
-          <span class="sr-only">Étape 3</span>
-        </ol>
-        <ol>
-          <button
-            id="navEtapes_etape3"
-            class="bg-gray-500 bg-gray-600 text-white font-medium py-2 px-4 rounded transition duration-200 rounded-full"
-          >
-            <span><img src="" alt="Validation" /></span>
-          </button>
-          <span class="sr-only">Étape 4</span>
+          <li>
+            <span class="sr-only">Étape 1</span>
+            <a href="" id="navEtapes_etape1">
+              <span><img src="" alt="Coordonées" /></span>
+            </a>
+          </li>
+
+          <li>
+            <span class="sr-only">Étape 2</span>
+            <a href="" id="navEtapes_etape2">
+              <span><img src="" alt="Paiement" /></span>
+            </a>
+          </li>
+
+          <li>
+            <span class="sr-only">Étape 3</span>
+            <a href="" id="navEtapes_etape3">
+              <span><img src="" alt="Validation" /></span>
+            </a>
+          </li>
         </ol>
       </nav>
 
@@ -59,13 +53,17 @@
         <h2 class="text-2xl font-bold m-2">Montant du don</h2>
 
         <!-- Choix bouton radio type de versement -->
-        <fieldset class="border-2 border-black-500 p-2">
+        <fieldset
+          class="border-2 border-black-500 p-2"
+          role="radiogroup"
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="err_versement"
+        >
           <legend>Type de versement</legend>
           <input
             type="radio"
             required
-            aria-required="true"
-            aria-describedby="err_versement"
             aria-invalid="false"
             id="versementUnique"
             name="versement"
@@ -74,9 +72,6 @@
 
           <input
             type="radio"
-            required
-            aria-required="true"
-            aria-describedby="err_versement"
             aria-invalid="false"
             id="versementMensuel"
             name="versement"
@@ -85,25 +80,27 @@
 
           <input
             type="radio"
-            required
-            aria-required="true"
-            aria-describedby="err_versement"
             aria-invalid="false"
             id="versementAnnuel"
             name="versement"
             value="versementAnnuel"
           /><label for="versementAnnuel">Don Annuel</label><br />
 
-          <span id="err_versement" role="alert"></span>
+          <span class="err" id="err_versement" role="alert"></span>
         </fieldset>
 
         <!-- Choix montant -->
-        <fieldset class="border-2 border-black-500 p-2">
+        <fieldset
+          class="border-2 border-black-500 p-2"
+          role="radiogroup"
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="err_montant"
+        >
           <legend>Montant</legend>
           <input
             type="radio"
             required
-            aria-required="true"
             aria-describedby="err_montant20"
             aria-invalid="false"
             id="montant20"
@@ -113,8 +110,6 @@
 
           <input
             type="radio"
-            required
-            aria-required="true"
             aria-describedby="err_montant50"
             aria-invalid="false"
             id="montant50"
@@ -124,8 +119,6 @@
 
           <input
             type="radio"
-            required
-            aria-required="true"
             aria-describedby="err_montant100"
             aria-invalid="false"
             id="montant100"
@@ -135,8 +128,6 @@
 
           <input
             type="radio"
-            required
-            aria-required="true"
             aria-describedby="err_montant200"
             aria-invalid="false"
             id="montant200"
@@ -146,26 +137,25 @@
 
           <input
             type="radio"
-            required
-            aria-required="true"
             aria-describedby="err_montantPersonnalise"
             aria-invalid="false"
             id="montantPersonnalise"
             name="montant"
-          /><label for="montantPersonnalise">Personnalisé</label>
-          <span id="err_montantPersonnalise"></span>
-          <input
-            class="border-2 border-black-500"
-            type="number"
-            id="montantPerso"
-            name="montantPerso"
-            min="2"
-            max="4"
-            size="6"
-          />
+          /><label for="montantPersonnalise"
+            >Personnalisé:
+            <input
+              class="border-2 border-black-500"
+              type="number"
+              id="montantPerso"
+              name="montantPerso"
+              min="000000"
+              max="999999"
+              size="6"
+          /></label>
+          <span class="err" id="err_montantPersonnalise"></span>
+          <br />
 
-          <!-- //ICI VALIDER LES SPAN ERREUR DES FIELDSET, FAIRE ATTENTION CAUSE LE ID EST PAS RELIÉ À RIEN?? -->
-          <span id="err_montant" role="alert"></span>
+          <span class="err" id="err_montant" role="alert"></span>
         </fieldset>
 
         <p>
@@ -175,7 +165,7 @@
           XXX au total.
         </p>
 
-        <button
+        <button type="button"
           id="etape1"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
         >
@@ -186,23 +176,26 @@
       <!------------- Deuxième Section: Coordonnées du donneur ------------->
       <div id="section1">
         <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
-        <fieldset class="border-2 border-black-500 p-2">
-          <label for="nom">Nom</label>
-          <input
-            class="border-2 border-black-500 p-2"
-            type="text"
-            id="nom"
-            name="nom"
-            required
-            aria-required="true"
-            aria-describedby="err_nom"
-            aria-invalid="false"
-            autocomplete="family-name"
-            pattern="([A-zÀ-ž\s\-\']+)"
-            title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
-          />
-          <span id="err_nom" role="alert"></span>
+        <fieldset class="border-2 border-black-500 p-2 flex flex-col gap-3">
+          <div class="flex flex-col mb-2"> <!-- Nom -->
+            <label for="nom">Nom</label>
+            <input
+              class="border-2 border-black-500 p-2"
+              type="text"
+              id="nom"
+              name="nom"
+              required
+              aria-required="true"
+              aria-describedby="err_nom"
+              aria-invalid="false"
+              autocomplete="family-name"
+              pattern="([A-zÀ-ž\s\-\']+)"
+              title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+            />
+            <span class="err" id="err_nom" role="alert"></span>
+          </div>
 
+          <div class="flex flex-col mb-2"> <!-- Prenom -->
           <label for="prenom">Prenom</label>
           <input
             class="border-2 border-black-500 p-2"
@@ -217,8 +210,10 @@
             pattern="([A-zÀ-ž\s\-\']+)"
             title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
           />
-          <span id="err_prenom" role="alert"></span>
+          <span class="err" id="err_prenom" role="alert"></span>
+          </div>
 
+          <div class="flex flex-col mb-2"> <!-- Email -->
           <label for="email">Email</label>
           <input
             class="border-2 border-black-500 p-2"
@@ -233,22 +228,25 @@
             pattern="(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)"
             title="format email"
           />
-          <span id="err_email" role="alert"></span>
+          <span class="err" id="err_email" role="alert"></span>
+          </div>
 
+          <div class="flex flex-col mb-2"> <!-- Téléphone -->
           <label for="telephone">Téléphone</label>
           <input
             class="border-2 border-black-500 p-2"
-            type="number"
+            type="text"
             id="telephone"
             name="telephone"
             required
             aria-required="true"
             aria-describedby="err_telephone"
             aria-invalid="false"
-            max="9999999999"
             autocomplete="tel"
+            pattern="^\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$"
           />
-          <span id="err_telephone" role="alert"></span>
+          <span class="err" id="err_telephone" role="alert"></span>
+          </div>
         </fieldset>
 
         <fieldset class="border-2 border-black-500 p-2">
@@ -265,7 +263,7 @@
             autocomplete="street-address"
             pattern="([A-zÀ-ž\s\-\']+)"
           />
-          <span id="err_adresse" role="alert"></span>
+          <span class="err" id="err_adresse" role="alert"></span>
 
           <label for="ville">Ville</label>
           <input
@@ -278,7 +276,7 @@
             aria-describedby="err_ville"
             aria-invalid="false"
           />
-          <span id="err_ville" role="alert"></span>
+          <span class="err" id="err_ville" role="alert"></span>
 
           <label for="province">Province</label>
           <input
@@ -291,7 +289,7 @@
             aria-describedby="err_province"
             aria-invalid="false"
           />
-          <span id="err_province" role="alert"></span>
+          <span class="err" id="err_province" role="alert"></span>
         </fieldset>
 
         <label for="codePostal">Code Postal <small>ex: A1A 1A1</small></label>
@@ -307,9 +305,9 @@
           autocomplete="postal-code"
           pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
         />
-        <span id="err_codePostal" role="alert"></span>
+        <span class="err" id="err_codePostal" role="alert"></span>
 
-        <button
+        <button type="button"
           id="etape2"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
         >
@@ -333,7 +331,7 @@
           max="9999999999999999"
           autocomplete="cc-number"
         />
-        <span id="err_" role="alert"></span>
+        <span class="err" id="err_" role="alert"></span>
 
         <label for="dateExpirationCarte">Date d'expiration</label>
         <label for="moisExpiration">Mois</label>
@@ -359,7 +357,7 @@
           <option value="11">Novembre</option>
           <option value="12">Décembre</option>
         </select>
-        <span id="err_moisExpiration" role="alert"></span>
+        <span class="err" id="err_moisExpiration" role="alert"></span>
 
         <label for="anneeExpiration">Année</label>
         <select
@@ -384,7 +382,7 @@
           <option value="2034">2034</option>
           <option value="2035">2035</option>
         </select>
-        <span id="err_anneeExpiration" role="alert"></span>
+        <span class="err" id="err_anneeExpiration" role="alert"></span>
 
         <label for="codeSecuriteCarte">Code de sécurité</label>
         <input
@@ -400,10 +398,10 @@
           max="999"
           autocomplete="cc-csc"
         />
-        <span id="err_codeSecuriteCarte" role="alert"></span>
+        <span class="err" id="err_codeSecuriteCarte" role="alert"></span>
         <br />
 
-        <button
+        <button type="button"
           id="etape3"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
         >

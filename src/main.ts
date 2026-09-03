@@ -1,4 +1,8 @@
 import "./style.css";
+obtenirMessages();
+
+let etape: number = 0;
+
 interface messageErreur {
   vide?: string;
   pattern?: string;
@@ -14,19 +18,16 @@ async function obtenirMessages(): Promise<void> {
   messagesJSON = await reponse.json();
 }
 
-const btnEtape1 = document.getElementById("etape1") as HTMLButtonElement | null;
-const btnEtape2 = document.getElementById("etape2") as HTMLButtonElement | null;
-const btnEtape3 = document.getElementById("etape3") as HTMLButtonElement | null;
-const btnEnvoyer = document.getElementById(
-  "envoyer",
-) as HTMLButtonElement | null;
+const btnEtape1 = document.getElementById("etape1") as HTMLButtonElement;
+const btnEtape2 = document.getElementById("etape2") as HTMLButtonElement;
+const btnEtape3 = document.getElementById("etape3") as HTMLButtonElement;
+const btnEnvoyer = document.getElementById("envoyer") as HTMLButtonElement;
 
 const btnNavEtape1 = document.getElementById("navEtapes_etape0");
 const btnNavEtape2 = document.getElementById("navEtapes_etape1");
 const btnNavEtape3 = document.getElementById("navEtapes_etape2");
 const btnNavEtape4 = document.getElementById("navEtapes_etape3");
 
-let etape: number;
 const sections = new Array();
 sections.push(document.getElementById("section0"));
 sections.push(document.getElementById("section1"));
@@ -34,37 +35,42 @@ sections.push(document.getElementById("section2"));
 sections.push(document.getElementById("section3"));
 
 //ÉLÉMENTS DU FORMULAIRE
-
 //Type Radio
-//0
 const refVersement = document.getElementsByName("versement");
 const refMontant = document.getElementsByName("montant");
+const champErrVersement = document.getElementById("err_versement");
+const champErrMontant = document.getElementById("err_montant");
 
 //Type Number
-//0
-const refMontantPerso = document.getElementById("montantPerso");
-//2
-const refNumeroCarte = document.getElementById("numeroCarte");
-const refCodeSecuriteCarte = document.getElementById("codeSecuriteCarte");
+const refMontantPerso = document.getElementById(
+  "montantPerso",
+) as HTMLInputElement;
+const refNumeroCarte = document.getElementById(
+  "numeroCarte",
+) as HTMLInputElement;
+const refCodeSecuriteCarte = document.getElementById(
+  "codeSecuriteCarte",
+) as HTMLInputElement;
 
 // Type Select
-//2
-const refMoisExpiration = document.getElementById("moisExpiration");
-const refAnneeExpiration = document.getElementById("anneeExpiration");
+const refMoisExpiration = document.getElementById(
+  "moisExpiration",
+) as HTMLInputElement;
+const refAnneeExpiration = document.getElementById(
+  "anneeExpiration",
+) as HTMLInputElement;
 
 //Type Text
-//1
-const refNom = document.getElementById("nom");
-const refPrenom = document.getElementById("prenom");
-const refEmail = document.getElementById("email");
-const refTelephone = document.getElementById("telephone");
-const refAdresse = document.getElementById("adresse");
-const refVille = document.getElementById("ville");
-const refProvince = document.getElementById("province");
-const refCodePostal = document.getElementById("codePostal");
+const refNom = document.getElementById("nom") as HTMLInputElement;
+const refPrenom = document.getElementById("prenom") as HTMLInputElement;
+const refEmail = document.getElementById("email") as HTMLInputElement;
+const refTelephone = document.getElementById("telephone") as HTMLInputElement;
+const refAdresse = document.getElementById("adresse") as HTMLInputElement;
+const refVille = document.getElementById("ville") as HTMLInputElement;
+const refProvince = document.getElementById("province") as HTMLInputElement;
+const refCodePostal = document.getElementById("codePostal") as HTMLInputElement;
 
 function initialiser(): void {
-  etape = 0;
   afficherEtape();
 }
 
@@ -82,23 +88,45 @@ function afficherEtape(): void {
   }
 }
 
-//ICI MODIFIER CODE DONNÉ, POUR VALIDER LES MONTANTS - RN VALIDE INFOS, pas ARGENT
-//TESTER ET VALIDER
 function validerEtape0() {
-  console.log("Passé suivant, etape = " + etape);
-  afficherEtape();
+  //Versement
+  const versementValide = Array.from(refVersement).some(
+    (element) => (element as HTMLInputElement).checked,
+  );
+  if (!versementValide && champErrVersement) {
+    champErrVersement.innerText = messagesJSON.versement.vide;
+  } else {
+    champErrVersement.innerText = "";
+  }
 
-  const nomElement = document.getElementById("nom") as HTMLInputElement;
-  const prenomElement = document.getElementById("prenom") as HTMLInputElement;
-  const emailElement = document.getElementById("email") as HTMLInputElement;
-  const telephoneElement = document.getElementById(
-    "telephone",
-  ) as HTMLInputElement;
+  //Montant
+  const montantValide = Array.from(refMontant).some(
+    (element) => (element as HTMLInputElement).checked,
+  );
+  if (!montantValide && champErrMontant) {
+    console.log("hi");
+    champErrMontant.innerText = messagesJSON.montant.vide;
+  } else {
+    console.log("hello");
+    champErrMontant.innerText = "";
+  }
 
-  const nomValide = validerChamp(nomElement);
-  const prenomValide = validerChamp(prenomElement);
-  const emailValide = validerChamp(emailElement);
-  const telephoneValide = validerChamp(telephoneElement);
+  if (!versementValide || !montantValide) {
+    console.log("Attention, erreur");
+  } else {
+    etape++;
+    afficherEtape();
+  }
+}
+
+function validerEtape1() {
+  console.log("Dans validerEtape1, etape = " + etape);
+  // afficherEtape();
+
+  const nomValide = validerChamp(refNom);
+  const prenomValide = validerChamp(refPrenom);
+  const emailValide = validerChamp(refEmail);
+  const telephoneValide = validerChamp(refTelephone);
 
   if (!nomValide || !prenomValide || !emailValide || !telephoneValide) {
     console.log("Attention, erreur");
@@ -107,17 +135,19 @@ function validerEtape0() {
   }
 }
 
-function validerEtape1() {}
-
 function validerEtape2() {}
 
 function validerChamp(champ: HTMLInputElement): boolean {
   let valide = false;
+  console.log("Dans valider Champ");
   const id = champ.id; // email
-  const idMessageErreur = "erreur-" + id; // erreur-email
+
+  console.log("Champ testé = " + id);
+
+  const idMessageErreur = "err_" + id; // erreur_email
   const erreurElement = document.getElementById(
     idMessageErreur,
-  ) as HTMLDivElement;
+  ) as HTMLSpanElement;
 
   console.log("valider champ", champ.validity);
 

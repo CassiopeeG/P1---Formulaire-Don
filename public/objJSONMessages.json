@@ -7,10 +7,15 @@
         "vide": "Vous devez entrer votre nom de famille.",
         "pattern": "Pour le nom de famille, les accents français, les espaces, les tirets et les apostrophes sont permis."
     },
-    "courriel": {
+    "email": {
         "vide": "Vous devez entrer votre adresse courriel.",
         "pattern": "Assurez-vous d'entrer une adresse courriel valide.",
         "type": "Assurez-vous d'entrer une adresse courriel."
+    },
+    "telephone": {
+        "vide": "Vous devez entrer votre téléphone.",
+        "pattern": "Assurez-vous d'entrer un numéro de téléohone suivant ce format: 000 222 3333.",
+        "type": "Assurez-vous d'entrer un numéro de téléphone."
     },
     "sujet": {
         "vide": "Vous devez entrer un sujet.",
@@ -18,5 +23,11 @@
     },
     "message": {
         "vide": "Entrez un message."
+    },
+    "versement": {
+        "vide": "Veillez choisir un type de versement"
+    },
+    "montant": {
+        "vide": "Veillez choisir un montant"
     }
 }
