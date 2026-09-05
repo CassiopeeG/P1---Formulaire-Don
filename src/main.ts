@@ -1,8 +1,5 @@
 import "./style.css";
-obtenirMessages();
-
-let etape: number = 0;
-
+let etape: number;
 interface messageErreur {
   vide?: string;
   pattern?: string;
@@ -18,21 +15,19 @@ async function obtenirMessages(): Promise<void> {
   messagesJSON = await reponse.json();
 }
 
-const btnEtape1 = document.getElementById("etape1") as HTMLButtonElement;
-const btnEtape2 = document.getElementById("etape2") as HTMLButtonElement;
-const btnEtape3 = document.getElementById("etape3") as HTMLButtonElement;
-const btnEnvoyer = document.getElementById("envoyer") as HTMLButtonElement;
+//Références au HTML
+const arrSections = new Array();
+const arrBtnNav = new Array();
+const arrBtnEtapes = new Array();
 
-const btnNavEtape1 = document.getElementById("navEtapes_etape0");
-const btnNavEtape2 = document.getElementById("navEtapes_etape1");
-const btnNavEtape3 = document.getElementById("navEtapes_etape2");
-const btnNavEtape4 = document.getElementById("navEtapes_etape3");
-
-const sections = new Array();
-sections.push(document.getElementById("section0"));
-sections.push(document.getElementById("section1"));
-sections.push(document.getElementById("section2"));
-sections.push(document.getElementById("section3"));
+const nbrEtapes = 4;
+for (let index = 0; index < nbrEtapes; index++) {
+  arrSections.push(document.getElementById("section" + index));
+  arrBtnNav.push(document.getElementById("navEtapes_etape" + index));
+  arrBtnEtapes.push(
+    document.getElementById("etape" + index) as HTMLButtonElement,
+  );
+}
 
 //ÉLÉMENTS DU FORMULAIRE
 //Type Radio
@@ -71,71 +66,107 @@ const refProvince = document.getElementById("province") as HTMLInputElement;
 const refCodePostal = document.getElementById("codePostal") as HTMLInputElement;
 
 function initialiser(): void {
+  etape = 2;
   afficherEtape();
 }
 
 function afficherEtape(): void {
-  for (let index = 0; index < sections.length; index++) {
+  for (let index = 0; index < arrSections.length; index++) {
     //Si la section correspond à l'étape visé, on affiche cette section
-    if (sections[index]) {
+    if (arrSections[index]) {
       if (index == etape) {
-        sections[index].classList.remove("sr-only");
+        arrSections[index].classList.remove("sr-only");
         //Sinon, cacher les autres sections du formulaire
       } else {
-        sections[index].classList.add("sr-only");
+        arrSections[index].classList.add("sr-only");
       }
     }
   }
 }
 
-function validerEtape0() {
-  //Versement
-  const versementValide = Array.from(refVersement).some(
-    (element) => (element as HTMLInputElement).checked,
-  );
-  if (!versementValide && champErrVersement) {
-    champErrVersement.innerText = messagesJSON.versement.vide;
-  } else {
-    champErrVersement.innerText = "";
-  }
+function validerEtape(): void {
+  switch (etape) {
+    case 0:
+      //Versement
+      const versementValide = Array.from(refVersement).some(
+        (element) => (element as HTMLInputElement).checked,
+      );
+      //Afficher msg erreur versement
+      if (!versementValide && champErrVersement) {
+        champErrVersement.innerText = messagesJSON.versement.vide;
+      } else {
+        champErrVersement.innerText = "";
+      }
 
-  //Montant
-  const montantValide = Array.from(refMontant).some(
-    (element) => (element as HTMLInputElement).checked,
-  );
-  if (!montantValide && champErrMontant) {
-    console.log("hi");
-    champErrMontant.innerText = messagesJSON.montant.vide;
-  } else {
-    console.log("hello");
-    champErrMontant.innerText = "";
-  }
+      //Montant
+      const montantValide = Array.from(refMontant).some(
+        (element) => (element as HTMLInputElement).checked,
+      );
+      //Afficher msg erreur montant
+      if (!montantValide && champErrMontant) {
+        champErrMontant.innerText = messagesJSON.montant.vide;
+      } else {
+        champErrMontant.innerText = "";
+      }
 
-  if (!versementValide || !montantValide) {
-    console.log("Attention, erreur");
-  } else {
-    etape++;
-    afficherEtape();
+      if (!versementValide || !montantValide) {
+        console.log("Attention, erreur");
+      } else {
+        etape++;
+        afficherEtape();
+      }
+      break;
+
+    case 1:
+      const nomValide = validerChamp(refNom);
+      const prenomValide = validerChamp(refPrenom);
+      const emailValide = validerChamp(refEmail);
+      const telephoneValide = validerChamp(refTelephone);
+      const adresseValide = validerChamp(refAdresse);
+      const villeValide = validerChamp(refVille);
+      const provinceValide = validerChamp(refProvince);
+      const codePostalValide = validerChamp(refCodePostal);
+
+      if (
+        !nomValide ||
+        !prenomValide ||
+        !emailValide ||
+        !telephoneValide ||
+        !adresseValide ||
+        !villeValide ||
+        !provinceValide ||
+        !codePostalValide
+      ) {
+        console.log("Attention, erreur");
+      } else {
+        etape++;
+        afficherEtape();
+      }
+      break;
+
+      case 2:
+      const numeroCarteValide = validerChamp(refNumeroCarte);
+      const moisExpirationValide = validerChamp(refMoisExpiration);
+      const anneeExpirationValide = validerChamp(refAnneeExpiration);
+      const codeSecuriteCarteValide = validerChamp(refCodeSecuriteCarte);
+
+      if (
+        !numeroCarteValide ||
+        !moisExpirationValide ||
+        !anneeExpirationValide ||
+        !codeSecuriteCarteValide
+      ) {
+        console.log("Attention, erreur");
+      } else {
+        etape++;
+        afficherEtape();
+      }
+      break;
+
+    default:
+      break;
   }
 }
-
-function validerEtape1() {
-  console.log("Dans validerEtape1, etape = " + etape);
-  // afficherEtape();
-
-  const nomValide = validerChamp(refNom);
-  const prenomValide = validerChamp(refPrenom);
-  const emailValide = validerChamp(refEmail);
-  const telephoneValide = validerChamp(refTelephone);
-
-  if (!nomValide || !prenomValide || !emailValide || !telephoneValide) {
-    console.log("Attention, erreur");
-  } else {
-    etape++;
-  }
-}
-
-function validerEtape2() {}
 
 function validerChamp(champ: HTMLInputElement): boolean {
   let valide = false;
@@ -153,8 +184,6 @@ function validerChamp(champ: HTMLInputElement): boolean {
 
   // Vérifie chaque type d'erreur de validation
   if (champ.validity.valueMissing && messagesJSON[id].vide) {
-    console.log("erreur", id);
-
     valide = false;
     erreurElement.innerText = messagesJSON[id].vide;
   } else if (champ.validity.typeMismatch && messagesJSON[id].type) {
@@ -167,6 +196,7 @@ function validerChamp(champ: HTMLInputElement): boolean {
     erreurElement.innerText = messagesJSON[id].pattern;
   } else {
     // La validation n'a pas d'erreur, donc on assigne la variable vraie
+    erreurElement.innerText = "";
     valide = true;
   }
 
@@ -187,32 +217,11 @@ function envoyer(event: MouseEvent): void {
   console.log("fonction envoyer");
 }
 
-//addEventListener des boutons "suivant"
-if (btnEtape1) {
-  btnEtape1.addEventListener("click", validerEtape0);
-}
-if (btnEtape2) {
-  btnEtape2.addEventListener("click", validerEtape1);
-}
-if (btnEtape3) {
-  btnEtape3.addEventListener("click", validerEtape2);
-  if (btnEnvoyer) {
-    btnEnvoyer.addEventListener("click", envoyer);
-  }
+//addEVentListener des boutons
+for (let index = 0; index < arrBtnNav.length; index++) {
+  arrBtnNav[index].addEventListener("click", revenirEtapePrecedente);
+  arrBtnEtapes[index].addEventListener("click", validerEtape);
 }
 
-//addEVentListener des boutons de navigation d'étapes
-if (btnNavEtape1) {
-  btnNavEtape1.addEventListener("click", revenirEtapePrecedente);
-}
-if (btnNavEtape2) {
-  btnNavEtape2.addEventListener("click", revenirEtapePrecedente);
-}
-if (btnNavEtape3) {
-  btnNavEtape3.addEventListener("click", revenirEtapePrecedente);
-}
-if (btnNavEtape4) {
-  btnNavEtape4.addEventListener("click", revenirEtapePrecedente);
-}
-
+obtenirMessages();
 initialiser();

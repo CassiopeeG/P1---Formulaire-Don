@@ -14,7 +14,7 @@
     },
     "telephone": {
         "vide": "Vous devez entrer votre téléphone.",
-        "pattern": "Assurez-vous d'entrer un numéro de téléohone suivant ce format: 000 222 3333.",
+        "pattern": "Assurez-vous d'entrer un numéro de téléphone suivant ce format: 000 222-3333.",
         "type": "Assurez-vous d'entrer un numéro de téléphone."
     },
     "sujet": {
@@ -25,9 +25,42 @@
         "vide": "Entrez un message."
     },
     "versement": {
-        "vide": "Veillez choisir un type de versement"
+        "vide": "Veuillez choisir un type de versement."
     },
     "montant": {
-        "vide": "Veillez choisir un montant"
+        "vide": "Veuillez choisir un montant."
+    },
+    "adresse": {
+        "vide": "Veuillez entrer votre adresse.",
+        "pattern": "Veuillez entre une adresse valide"
+    },
+    "ville": {
+        "vide": "Veuillez entrer une ville.",
+        "pattern": "Pas de charactère spécial permis"
+    },
+    "province": {
+        "vide": "Veuillez entrer une province.",
+        "pattern": "Pas de charactère spécial permis"
+    },
+    "codePostal": {
+        "vide": "Veuillez entrer votre code postal",
+        "pattern": "Assurez-vous d'entrer un code postal suivant ce format: A1A 1A1",
+        "type": "Le code postal ne peut être que des chiffres et des lettres."
+    },
+    "numeroCarte": {
+        "vide": "Veuillez entrer un numéro de carte.",
+        "pattern": "Veuillez respecter ce format: 0000 0000 0000 0000",
+        "type": "Veuillez respecter ce format: 0000 0000 0000 0000"
+    },
+    "moisExpiration": {
+        "vide": "Veuillez choisir un mois."
+    },
+    "anneeExpiration": {
+        "vide": "Veuillez choisir une année"
+    },
+    "codeSecuriteCarte": {
+        "vide": "Veuillez entrer le code de sécurité situé sur votre carte.",
+        "pattern": "Le code de sécurité doit être un code à 3 chiffres.",
+        "type": "Le code de sécurité doit être un code à 3 chiffres."
     }
 }

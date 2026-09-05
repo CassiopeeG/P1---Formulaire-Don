@@ -16,30 +16,30 @@
     <!------------------------ Début du formulaire ------------------------>
     <form action="merci.html" method="get" class="bg-white p-3">
       <!-- Navigateur de sections -->
-      <nav aria-label="Étapes du formulaire de don" class="navEtapes_">
-        <ol>
-          <li>
+      <nav aria-label="Étapes du formulaire de don">
+        <ol class="flex justify-center gap-3">
+          <li class="p-4 bg-gray-400 w-fit rounded-full">
             <span class="sr-only">Étape 0</span>
             <a href="" id="navEtapes_etape0">
               <span><img src="" alt="Montant" /></span>
             </a>
           </li>
 
-          <li>
+          <li class="p-4 bg-gray-400 w-fit rounded-full">
             <span class="sr-only">Étape 1</span>
             <a href="" id="navEtapes_etape1">
               <span><img src="" alt="Coordonées" /></span>
             </a>
           </li>
 
-          <li>
+          <li class="p-4 bg-gray-400 w-fit rounded-full">
             <span class="sr-only">Étape 2</span>
             <a href="" id="navEtapes_etape2">
               <span><img src="" alt="Paiement" /></span>
             </a>
           </li>
 
-          <li>
+          <li class="p-4 bg-gray-400 w-fit rounded-full">
             <span class="sr-only">Étape 3</span>
             <a href="" id="navEtapes_etape3">
               <span><img src="" alt="Validation" /></span>
@@ -165,8 +165,9 @@
           XXX au total.
         </p>
 
-        <button type="button"
-          id="etape1"
+        <button
+          type="button"
+          id="etape0"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
         >
           Suivant
@@ -177,7 +178,8 @@
       <div id="section1">
         <h2 class="text-2xl font-bold m-2">Coordonnées du donneur</h2>
         <fieldset class="border-2 border-black-500 p-2 flex flex-col gap-3">
-          <div class="flex flex-col mb-2"> <!-- Nom -->
+          <div class="flex flex-col mb-2">
+            <!-- Nom -->
             <label for="nom">Nom</label>
             <input
               class="border-2 border-black-500 p-2"
@@ -189,67 +191,70 @@
               aria-describedby="err_nom"
               aria-invalid="false"
               autocomplete="family-name"
-              pattern="([A-zÀ-ž\s\-\']+)"
+              pattern="^[[\p{L}\s'\-]+]{2,}$"
               title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
             />
             <span class="err" id="err_nom" role="alert"></span>
           </div>
 
-          <div class="flex flex-col mb-2"> <!-- Prenom -->
-          <label for="prenom">Prenom</label>
-          <input
-            class="border-2 border-black-500 p-2"
-            type="text"
-            id="prenom"
-            name="prenom"
-            required
-            aria-required="true"
-            aria-describedby="err_prenom"
-            aria-invalid="false"
-            autocomplete="given-name"
-            pattern="([A-zÀ-ž\s\-\']+)"
-            title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
-          />
-          <span class="err" id="err_prenom" role="alert"></span>
+          <div class="flex flex-col mb-2">
+            <!-- Prenom -->
+            <label for="prenom">Prenom</label>
+            <input
+              class="border-2 border-black-500 p-2"
+              type="text"
+              id="prenom"
+              name="prenom"
+              required
+              aria-required="true"
+              aria-describedby="err_prenom"
+              aria-invalid="false"
+              autocomplete="given-name"
+              pattern="^[[\p{L}\s'\-]+]{2,}$"
+              title="Lettres, espaces, tirets, accents et guillemet simple autorisés. Chiffres et charactères spéciaux non-autorisés"
+            />
+            <span class="err" id="err_prenom" role="alert"></span>
           </div>
 
-          <div class="flex flex-col mb-2"> <!-- Email -->
-          <label for="email">Email</label>
-          <input
-            class="border-2 border-black-500 p-2"
-            type="email"
-            id="email"
-            name="email"
-            required
-            aria-required="true"
-            aria-describedby="err_email"
-            aria-invalid="false"
-            autocomplete="email"
-            pattern="(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)"
-            title="format email"
-          />
-          <span class="err" id="err_email" role="alert"></span>
+          <div class="flex flex-col mb-2">
+            <!-- Email -->
+            <label for="email">Email</label>
+            <input
+              class="border-2 border-black-500 p-2"
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-required="true"
+              aria-describedby="err_email"
+              aria-invalid="false"
+              autocomplete="email"
+              pattern="(\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+)"
+              title="format email"
+            />
+            <span class="err" id="err_email" role="alert"></span>
           </div>
 
-          <div class="flex flex-col mb-2"> <!-- Téléphone -->
-          <label for="telephone">Téléphone</label>
-          <input
-            class="border-2 border-black-500 p-2"
-            type="text"
-            id="telephone"
-            name="telephone"
-            required
-            aria-required="true"
-            aria-describedby="err_telephone"
-            aria-invalid="false"
-            autocomplete="tel"
-            pattern="^\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$"
-          />
-          <span class="err" id="err_telephone" role="alert"></span>
+          <div class="flex flex-col mb-2">
+            <!-- Téléphone -->
+            <label for="telephone">Téléphone</label>
+            <input
+              class="border-2 border-black-500 p-2"
+              type="tel"
+              id="telephone"
+              name="telephone"
+              required
+              aria-required="true"
+              aria-describedby="err_telephone"
+              aria-invalid="false"
+              autocomplete="tel"
+              pattern="[0-9]{3} [0-9]{3}-[0-9]{4}"
+            />
+            <span class="err" id="err_telephone" role="alert"></span>
           </div>
         </fieldset>
 
-        <fieldset class="border-2 border-black-500 p-2">
+        <fieldset class="border-2 border-black-500 p-2 flex flex-col gap-3">
           <label for="adresse">Adresse</label>
           <input
             class="border-2 border-black-500 p-2"
@@ -261,7 +266,7 @@
             aria-describedby="err_adresse"
             aria-invalid="false"
             autocomplete="street-address"
-            pattern="([A-zÀ-ž\s\-\']+)"
+            pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$"
           />
           <span class="err" id="err_adresse" role="alert"></span>
 
@@ -275,6 +280,7 @@
             aria-required="true"
             aria-describedby="err_ville"
             aria-invalid="false"
+            pattern="^[a-zA-ZÀ-ÿ0-9 '\-]+$"
           />
           <span class="err" id="err_ville" role="alert"></span>
 
@@ -288,27 +294,29 @@
             aria-required="true"
             aria-describedby="err_province"
             aria-invalid="false"
+            pattern="^[[\p{L}\s'\-]+]{2,}$"
           />
           <span class="err" id="err_province" role="alert"></span>
+
+          <label for="codePostal">Code Postal <small>ex: A1A 1A1</small></label>
+          <input
+            class="border-2 border-black-500 p-2"
+            type="text"
+            id="codePostal"
+            name="codePostal"
+            required
+            aria-required="true"
+            aria-describedby="err_codePostal"
+            aria-invalid="false"
+            autocomplete="postal-code"
+            pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
+          />
+          <span class="err" id="err_codePostal" role="alert"></span>
         </fieldset>
 
-        <label for="codePostal">Code Postal <small>ex: A1A 1A1</small></label>
-        <input
-          class="border-2 border-black-500 p-2"
-          type="text"
-          id="codePostal"
-          name="codePostal"
-          required
-          aria-required="true"
-          aria-describedby="err_codePostal"
-          aria-invalid="false"
-          autocomplete="postal-code"
-          pattern="([A-Z][0-9][A-Z] [0-9][A-Z][0-9]|[0-9]{5})"
-        />
-        <span class="err" id="err_codePostal" role="alert"></span>
-
-        <button type="button"
-          id="etape2"
+        <button
+          type="button"
+          id="etape1"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
         >
           Suivant
@@ -316,32 +324,36 @@
       </div>
 
       <!------------- Troisième Section: Détails de Paiement ------------->
-      <div id="section2">
+      <div id="section2" class="flex flex-col gap-3">
         <h2 class="text-2xl font-bold m-2">Détails de Paiement</h2>
         <label for="numeroCarte">Numéro de la carte</label>
         <input
           class="border-2 border-black-500 p-2"
-          type="number"
+          type="texte"
+          inputmode="numeric"
+          pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$"
           id="numeroCarte"
           name="numeroCarte"
           required
           aria-required="true"
           aria-describedby="err_prenom"
           aria-invalid="false"
-          max="9999999999999999"
           autocomplete="cc-number"
         />
-        <span class="err" id="err_" role="alert"></span>
+        <span class="err" id="err_numeroCarte" role="alert"></span>
 
-        <label for="dateExpirationCarte">Date d'expiration</label>
-        <label for="moisExpiration">Mois</label>
+        <label for="dateExpirationCarte" class="font-bold"
+          >Date d'expiration:
+        </label>
+        <label for="moisExpiration" class="sr-only">Mois</label>
         <select
-          class="border-2 border-black-500 p-2"
+          class="border-2 border-black-500 p-2 w-fit mr-2"
           id="moisExpiration"
           name="moisExpiration"
           aria-required="true"
           aria-describedby="err_moisExpiration"
           aria-invalid="false"
+          required
         >
           <option value="" disabled selected>Choisir un mois</option>
           <option value="01">Janvier</option>
@@ -359,9 +371,9 @@
         </select>
         <span class="err" id="err_moisExpiration" role="alert"></span>
 
-        <label for="anneeExpiration">Année</label>
+        <label for="anneeExpiration" class="sr-only">Année</label>
         <select
-          class="border-2 border-black-500 p-2"
+          class="border-2 border-black-500 p-2 w-fit"
           id="anneeExpiration"
           name="anneeExpiration"
           aria-required="true"
@@ -386,23 +398,24 @@
 
         <label for="codeSecuriteCarte">Code de sécurité</label>
         <input
-          class="border-2 border-black-500 p-2"
-          type="number"
+          class="border-2 border-black-500 p-2 w-15"
+          type="text"
+          inputmode="numeric"
           id="codeSecuriteCarte"
           name="codeSecuriteCarte"
           required
           aria-required="true"
           aria-describedby="err_codeSecuriteCarte"
           aria-invalid="false"
-          min="000"
-          max="999"
           autocomplete="cc-csc"
+          pattern="[0-9][0-9][0-9]"
         />
         <span class="err" id="err_codeSecuriteCarte" role="alert"></span>
         <br />
 
-        <button type="button"
-          id="etape3"
+        <button
+          type="button"
+          id="etape2"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
         >
           Suivant
@@ -414,7 +427,7 @@
         <h2 class="text-2xl font-bold m-2">Validation</h2>
 
         <input
-          id="envoyer"
+          id="etape3"
           class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition duration-200"
           type="submit"
           value="Envoyer"
