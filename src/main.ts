@@ -30,13 +30,15 @@ for (let index = 0; index < nbrEtapes; index++) {
 }
 
 //ÉLÉMENTS DU FORMULAIRE
-//Type Radio
+let champs = document.querySelectorAll("input");
 const refVersement = document.getElementsByName("versement");
 const refMontant = document.getElementsByName("montant");
-const champErrVersement = document.getElementById("err_versement");
-const champErrMontant = document.getElementById("err_montant");
-
-//Type Number
+const champErrVersement = document.querySelector(
+  ".err_versement",
+) as HTMLInputElement;
+const champErrMontant = document.querySelector(
+  ".err_montant",
+) as HTMLInputElement;
 const refMontantPerso = document.getElementById(
   "montantPerso",
 ) as HTMLInputElement;
@@ -46,16 +48,12 @@ const refNumeroCarte = document.getElementById(
 const refCodeSecuriteCarte = document.getElementById(
   "codeSecuriteCarte",
 ) as HTMLInputElement;
-
-// Type Select
 const refMoisExpiration = document.getElementById(
   "moisExpiration",
 ) as HTMLInputElement;
 const refAnneeExpiration = document.getElementById(
   "anneeExpiration",
 ) as HTMLInputElement;
-
-//Type Text
 const refNom = document.getElementById("nom") as HTMLInputElement;
 const refPrenom = document.getElementById("prenom") as HTMLInputElement;
 const refEmail = document.getElementById("email") as HTMLInputElement;
@@ -66,7 +64,7 @@ const refProvince = document.getElementById("province") as HTMLInputElement;
 const refCodePostal = document.getElementById("codePostal") as HTMLInputElement;
 
 function initialiser(): void {
-  etape = 2;
+  etape = 0;
   afficherEtape();
 }
 
@@ -144,7 +142,7 @@ function validerEtape(): void {
       }
       break;
 
-      case 2:
+    case 2:
       const numeroCarteValide = validerChamp(refNumeroCarte);
       const moisExpirationValide = validerChamp(refMoisExpiration);
       const anneeExpirationValide = validerChamp(refAnneeExpiration);
@@ -170,30 +168,31 @@ function validerEtape(): void {
 
 function validerChamp(champ: HTMLInputElement): boolean {
   let valide = false;
-  console.log("Dans valider Champ");
-  const id = champ.id; // email
-
-  console.log("Champ testé = " + id);
-
-  const idMessageErreur = "err_" + id; // erreur_email
-  const erreurElement = document.getElementById(
+  const name = champ.name; // email
+  const idMessageErreur = ".err_" + name; // erreur_email
+  const erreurElement = document.querySelector(
     idMessageErreur,
   ) as HTMLSpanElement;
 
-  console.log("valider champ", champ.validity);
+  console.log(
+    "Dans valider Champ, champ testé = " +
+      name +
+      ". Validity = " +
+      champ.validity,
+  );
 
   // Vérifie chaque type d'erreur de validation
-  if (champ.validity.valueMissing && messagesJSON[id].vide) {
+  if (champ.validity.valueMissing && messagesJSON[name].vide) {
     valide = false;
-    erreurElement.innerText = messagesJSON[id].vide;
-  } else if (champ.validity.typeMismatch && messagesJSON[id].type) {
+    erreurElement.innerText = messagesJSON[name].vide;
+  } else if (champ.validity.typeMismatch && messagesJSON[name].type) {
     // Type de données incorrect (email, url, tel, etc.)
     valide = false;
-    erreurElement.innerText = messagesJSON[id].type;
-  } else if (champ.validity.patternMismatch && messagesJSON[id].pattern) {
+    erreurElement.innerText = messagesJSON[name].type;
+  } else if (champ.validity.patternMismatch && messagesJSON[name].pattern) {
     // Ne correspond pas au pattern regex défini
     valide = false;
-    erreurElement.innerText = messagesJSON[id].pattern;
+    erreurElement.innerText = messagesJSON[name].pattern;
   } else {
     // La validation n'a pas d'erreur, donc on assigne la variable vraie
     erreurElement.innerText = "";
@@ -213,8 +212,53 @@ function revenirEtapePrecedente(event: MouseEvent): void {
   }
 }
 
+function validerBlur(e) {
+  console.log("dans champ blurry");
+  validerChamp(e.currentTarget);
+}
+
 function envoyer(event: MouseEvent): void {
   console.log("fonction envoyer");
+}
+
+function mettreMontantPerso(e) {
+  // let montant = refMontantPerso.value
+  // console.log("MONTANT = " + montant)
+
+  refMontant.forEach((inputRadio) => {
+    if (inputRadio.checked) {
+      console.log("Valeur, " + inputRadio.value);
+      refMontantPerso.value = inputRadio.value;
+    }
+  });
+}
+
+function afficherInformationVersement(e) {
+  if (e.currentTarget.name == "versement") {
+    let pInfoVersement = document.getElementById("p-infoVersement");
+    pInfoVersement?.parentNode.classList.remove("hidden");
+
+    //Afficher le bon message selon le type de versement choisi
+    switch (e.currentTarget.id) {
+      case "versementUnique":
+        pInfoVersement.innerText = "Un don unique est envoyé immédiatement, sans récurrence.";
+        break;
+
+      case "versementMensuel":
+        let strMontant = e.currentTarget.value
+        console.log(strMontant)
+        pInfoVersement.innerText = "Un don mensuel vous est chargé le premier de chaque mois pour les 12 prochains mois.";
+        break;
+
+      case "versementAnnuel":
+        pInfoVersement.innerText = "Un don mensuel vous est chargé immédiatement, puis à la même date chaque année pour une période de 5 ans.";
+        break;
+
+      default:
+        //ok
+        break;
+    }
+  }
 }
 
 //addEVentListener des boutons
@@ -222,6 +266,21 @@ for (let index = 0; index < arrBtnNav.length; index++) {
   arrBtnNav[index].addEventListener("click", revenirEtapePrecedente);
   arrBtnEtapes[index].addEventListener("click", validerEtape);
 }
+
+//AddEventListener des inputs
+for (let index = 0; index < champs.length; index++) {
+  champs[index].addEventListener("blur", validerBlur);
+}
+
+refMontant.forEach((inputRadio) => {
+  inputRadio.addEventListener("change", mettreMontantPerso);
+  inputRadio.addEventListener("change", validerBlur);
+});
+
+refVersement.forEach((inputRadio) => {
+  inputRadio.addEventListener("change", afficherInformationVersement);
+  inputRadio.addEventListener("change", validerBlur);
+});
 
 obtenirMessages();
 initialiser();

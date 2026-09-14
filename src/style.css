@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
-.err{
-    color: red;
+/* Interativitée */
+.err {
+  color: red;
+}
+
+ol li img:hover {
+  filter: brightness(80%);
+}
+
+.bg-grisPale {
+  background-color: #d2ed70;
+}
+
+.bg-grisPale {
+  background-color: #f8f8f6;
+}
+
+input[type="radio"]:checked+label {
+  background-color: #d2ed70;
 }
