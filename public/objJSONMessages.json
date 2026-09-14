@@ -28,7 +28,9 @@
         "vide": "Veuillez choisir un type de versement."
     },
     "montant": {
-        "vide": "Veuillez choisir un montant."
+        "vide": "Veuillez choisir un montant.",
+        "pattern": "Veuillez choisir un montant avec un maximum de deux chiffres après la virgul",
+        "type": "Le montant doit être un nombre avec un maximum de deux chiffres après la virgule" 
     },
     "adresse": {
         "vide": "Veuillez entrer votre adresse.",

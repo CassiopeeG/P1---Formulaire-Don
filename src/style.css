@@ -9,7 +9,7 @@ ol li img:hover {
   filter: brightness(80%);
 }
 
-.bg-grisPale {
+.bg-vert {
   background-color: #d2ed70;
 }
 
@@ -19,4 +19,12 @@ ol li img:hover {
 
 input[type="radio"]:checked+label {
   background-color: #d2ed70;
+}
+
+:focus{
+  border: none;
+}
+
+.montantPerso:checked{
+
 }

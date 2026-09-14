@@ -64,7 +64,7 @@ const refProvince = document.getElementById("province") as HTMLInputElement;
 const refCodePostal = document.getElementById("codePostal") as HTMLInputElement;
 
 function initialiser(): void {
-  etape = 0;
+  etape = 2;
   afficherEtape();
 }
 
@@ -184,6 +184,7 @@ function validerChamp(champ: HTMLInputElement): boolean {
   // Vérifie chaque type d'erreur de validation
   if (champ.validity.valueMissing && messagesJSON[name].vide) {
     valide = false;
+    console.log("erreurElement= " + erreurElement + " idMessageErreur = " + idMessageErreur)
     erreurElement.innerText = messagesJSON[name].vide;
   } else if (champ.validity.typeMismatch && messagesJSON[name].type) {
     // Type de données incorrect (email, url, tel, etc.)
@@ -265,6 +266,9 @@ function afficherInformationVersement(e) {
 for (let index = 0; index < arrBtnNav.length; index++) {
   arrBtnNav[index].addEventListener("click", revenirEtapePrecedente);
   arrBtnEtapes[index].addEventListener("click", validerEtape);
+
+  //Vu que le javascript est activé, afficher les boutons suivant: 
+  arrBtnEtapes[index].classList.remove("hidden");
 }
 
 //AddEventListener des inputs
