@@ -9,6 +9,9 @@ interface erreursJSON {
   [fieldName: string]: messageErreur;
 }
 let messagesJSON: erreursJSON;
+let etape0Valide: boolean = false;
+let etape1Valide: boolean = false;
+let etape2Valide: boolean = false;
 
 async function obtenirMessages(): Promise<void> {
   const reponse = await fetch("objJSONMessages.json");
@@ -64,7 +67,7 @@ const refProvince = document.getElementById("province") as HTMLInputElement;
 const refCodePostal = document.getElementById("codePostal") as HTMLInputElement;
 
 function initialiser(): void {
-  etape = 2;
+  etape = 0;
   afficherEtape();
 }
 
@@ -109,7 +112,11 @@ function validerEtape(): void {
 
       if (!versementValide || !montantValide) {
         console.log("Attention, erreur");
+        etape0Valide = false;
+        arrBtnNav[etape].parentNode.classList.remove("success");
       } else {
+        arrBtnNav[etape].parentNode.classList.add("success");
+        etape0Valide = true;
         etape++;
         afficherEtape();
       }
@@ -136,7 +143,11 @@ function validerEtape(): void {
         !codePostalValide
       ) {
         console.log("Attention, erreur");
+        arrBtnNav[etape].parentNode.classList.remove("success");
+        etape1Valide = false;
       } else {
+        arrBtnNav[etape].parentNode.classList.add("success");
+        etape1Valide = true;
         etape++;
         afficherEtape();
       }
@@ -155,15 +166,75 @@ function validerEtape(): void {
         !codeSecuriteCarteValide
       ) {
         console.log("Attention, erreur");
+        arrBtnNav[etape].parentNode.classList.remove("success");
+        etape2Valide = false;
       } else {
+        arrBtnNav[etape].parentNode.classList.add("success");
+        etape2Valide = true;
         etape++;
         afficherEtape();
+        afficherConfirmation();
+      }
+      break;
+
+    case 3:
+      console.log("validation");
+      etape = 0;
+      validerEtape();
+      etape = 1;
+      validerEtape();
+      etape = 2;
+      validerEtape();
+
+      if (
+        etape0Valide == true &&
+        etape1Valide == true &&
+        etape2Valide == true
+      ) {
+        console.log("valide");
       }
       break;
 
     default:
       break;
   }
+}
+
+function afficherConfirmation() {
+  refVersement.forEach((inputRadio) => {
+    if (inputRadio.checked) {
+      let typeVersement = inputRadio.value.slice(9);
+      document.getElementById("confirmationTypeDon").innerText = typeVersement;
+    }
+  });
+  refMontant.forEach((inputRadio) => {
+    console.log("value = " + inputRadio.value);
+
+    if (inputRadio.checked) {
+      if ((inputRadio.value = "montantPersonnalise")) {
+        document.getElementById("confirmationMontantDon").innerText =
+          refMontantPerso.value + " $";
+      } else {
+        document.getElementById("confirmationMontantDon").innerText =
+          inputRadio.value + " $";
+      }
+    }
+  });
+
+  document.getElementById("confirmationNom").innerText = refNom.value;
+  document.getElementById("confirmationPrenom").innerText = refPrenom.value;
+  document.getElementById("confirmationAdresse").innerText = refAdresse.value;
+  document.getElementById("confirmationVille").innerText = refVille.value;
+  document.getElementById("confirmationProvince").innerText = refProvince.value;
+  document.getElementById("confirmationCodePostal").innerText =
+    refCodePostal.value;
+
+  document.getElementById("confirmationNumeroCarte").innerText =
+    "**** **** ****" + refNumeroCarte.value.slice(14);
+  document.getElementById("confirmationDateExpiration").innerText =
+    refMoisExpiration.value + "/" + refAnneeExpiration.value;
+  document.getElementById("confirmationCodeSecurite").innerText =
+    refCodeSecuriteCarte.value;
 }
 
 function validerChamp(champ: HTMLInputElement): boolean {
@@ -184,7 +255,12 @@ function validerChamp(champ: HTMLInputElement): boolean {
   // Vérifie chaque type d'erreur de validation
   if (champ.validity.valueMissing && messagesJSON[name].vide) {
     valide = false;
-    console.log("erreurElement= " + erreurElement + " idMessageErreur = " + idMessageErreur)
+    console.log(
+      "erreurElement= " +
+        erreurElement +
+        " idMessageErreur = " +
+        idMessageErreur,
+    );
     erreurElement.innerText = messagesJSON[name].vide;
   } else if (champ.validity.typeMismatch && messagesJSON[name].type) {
     // Type de données incorrect (email, url, tel, etc.)
@@ -207,19 +283,22 @@ function revenirEtapePrecedente(event: MouseEvent): void {
   const target = event.currentTarget as HTMLElement;
   const nbrEtapeVisee: number = parseInt(target.id.slice(15));
 
-  if (nbrEtapeVisee <= etape) {
+  //Si l'étape est approuvée
+  let classListNavEtape = target.parentElement.classList;
+  console.log("Ok " + classListNavEtape);
+  if (classListNavEtape.contains("success")) {
     etape = nbrEtapeVisee;
     afficherEtape();
   }
+
+  // //POUR AIDER AU CODE
+  // etape = nbrEtapeVisee;
+  // afficherEtape();
+  // afficherConfirmation();
 }
 
 function validerBlur(e) {
-  console.log("dans champ blurry");
   validerChamp(e.currentTarget);
-}
-
-function envoyer(event: MouseEvent): void {
-  console.log("fonction envoyer");
 }
 
 function mettreMontantPerso(e) {
@@ -242,17 +321,20 @@ function afficherInformationVersement(e) {
     //Afficher le bon message selon le type de versement choisi
     switch (e.currentTarget.id) {
       case "versementUnique":
-        pInfoVersement.innerText = "Un don unique est envoyé immédiatement, sans récurrence.";
+        pInfoVersement.innerText =
+          "Un don unique est envoyé immédiatement, sans récurrence.";
         break;
 
       case "versementMensuel":
-        let strMontant = e.currentTarget.value
-        console.log(strMontant)
-        pInfoVersement.innerText = "Un don mensuel vous est chargé le premier de chaque mois pour les 12 prochains mois.";
+        let strMontant = e.currentTarget.value;
+        console.log(strMontant);
+        pInfoVersement.innerText =
+          "Un don mensuel vous est chargé le premier de chaque mois pour les 12 prochains mois.";
         break;
 
       case "versementAnnuel":
-        pInfoVersement.innerText = "Un don mensuel vous est chargé immédiatement, puis à la même date chaque année pour une période de 5 ans.";
+        pInfoVersement.innerText =
+          "Un don mensuel vous est chargé immédiatement, puis à la même date chaque année pour une période de 5 ans.";
         break;
 
       default:
@@ -267,7 +349,7 @@ for (let index = 0; index < arrBtnNav.length; index++) {
   arrBtnNav[index].addEventListener("click", revenirEtapePrecedente);
   arrBtnEtapes[index].addEventListener("click", validerEtape);
 
-  //Vu que le javascript est activé, afficher les boutons suivant: 
+  //Vu que le javascript est activé, afficher les boutons suivant:
   arrBtnEtapes[index].classList.remove("hidden");
 }
 

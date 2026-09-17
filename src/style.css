@@ -9,6 +9,22 @@ ol li img:hover {
   filter: brightness(80%);
 }
 
+.active {
+  border: 2px;
+  padding: 4px;
+  width: 48px;
+  border-bottom: solid;
+  border-color: #d2ed70;
+}
+
+.success {
+  border: 2px;
+  padding: 4px;
+  width: 48px;
+  border-bottom: solid;
+  border-color: #d2ed70;
+}
+
 .bg-vert {
   background-color: #d2ed70;
 }
@@ -21,10 +37,10 @@ input[type="radio"]:checked+label {
   background-color: #d2ed70;
 }
 
-:focus{
-  border: none;
+input[type="radio"]:hover+label {
+  background-color: #e5ff88;
 }
 
-.montantPerso:checked{
-
+:focus{
+  border: none;
 }

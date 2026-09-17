@@ -11,7 +11,7 @@
   <body class="m-auto flex flex-col items-center justify-center">
     <!-- //Icone -->
     <div class="p-4 center">
-      <img src="" alt="Ecosia" />
+      <img src="./public/logo.png" alt="Ecosia" />
     </div>
 
     <!-- //Titre Page -->
@@ -63,7 +63,7 @@
         class="p-3 flex justify-center gap-4"
       >
         <!-- Image en écran large -->
-        <div class="hidden min-md:block flex-1 min-xl:flex-initial">
+        <div class="hidden min-md:block">
           <img
             src="./public/image_arrierePlan.jpg"
             alt=""
@@ -72,13 +72,13 @@
         </div>
 
         <!------------- Première Section: Montant du don ------------->
-        <section id="section0">
+        <section id="section0" class="max-w-md">
           <h2 class="text-2xl font-bold m-4 text-center">Montant du don</h2>
 
           <div>
             <!-- Choix bouton radio type de versement -->
             <fieldset
-              class="min-w-72 mb-3 px-2 py-3 bg-grisPale rounded-[20px] flex gap-1 flex-wrap justify-start"
+              class="min-w-72 mb-3 px-2 py-3 bg-grisPale rounded-[20px] flex gap-1 justify-start"
               role="radiogroup"
               aria-required="true"
               aria-invalid="false"
@@ -212,6 +212,7 @@
                   aria-invalid="false"
                   id="montantPersonnalise"
                   name="montant"
+                  value="montantPersonnalise"
                 /><label
                   for="montantPersonnalise"
                   class="flex-4 bg-neutral-200 outline outline-1 outline-offset-[-1px] outline-zinc-800 rounded-tl-[10px] rounded-bl-[10px] inline-flex justify-center items-center gap-2.5"
@@ -444,63 +445,62 @@
             />
             <span class="err err_numeroCarte" role="alert"></span>
 
-            
             <label for="dateExpirationCarte" class="font-bold"
               >Date d'expiration:
             </label>
             <div>
-            <label for="moisExpiration" class="sr-only">Mois</label>
-            <select
-              class="border-2 border-black-500 p-2 w-fit mr-2 bg-white"
-              id="moisExpiration"
-              name="moisExpiration"
-              aria-required="true"
-              aria-describedby="err_moisExpiration"
-              aria-invalid="false"
-              required
-            >
-              <option value="" disabled selected>Mois</option>
-              <option value="01">Janvier</option>
-              <option value="02">Février</option>
-              <option value="03">Mars</option>
-              <option value="04">Avril</option>
-              <option value="05">Mai</option>
-              <option value="06">Juin</option>
-              <option value="07">Juillet</option>
-              <option value="08">Août</option>
-              <option value="09">Septembre</option>
-              <option value="10">Octobre</option>
-              <option value="11">Novembre</option>
-              <option value="12">Décembre</option>
-            </select>
+              <label for="moisExpiration" class="sr-only">Mois</label>
+              <select
+                class="border-2 border-black-500 p-2 w-fit mr-2 bg-white"
+                id="moisExpiration"
+                name="moisExpiration"
+                aria-required="true"
+                aria-describedby="err_moisExpiration"
+                aria-invalid="false"
+                required
+              >
+                <option value="" disabled selected>Mois</option>
+                <option value="01">Janvier</option>
+                <option value="02">Février</option>
+                <option value="03">Mars</option>
+                <option value="04">Avril</option>
+                <option value="05">Mai</option>
+                <option value="06">Juin</option>
+                <option value="07">Juillet</option>
+                <option value="08">Août</option>
+                <option value="09">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+              </select>
 
-            <label for="anneeExpiration" class="sr-only">Année</label>
-            <select
-              class="border-2 border-black-500 p-2 w-fit mb-2 bg-white"
-              id="anneeExpiration"
-              name="anneeExpiration"
-              aria-required="true"
-              aria-describedby="err_anneeExpiration"
-              aria-invalid="false"
-              required
-            >
-              <option value="" disabled selected>Année</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-              <option value="2031">2031</option>
-              <option value="2032">2032</option>
-              <option value="2033">2033</option>
-              <option value="2034">2034</option>
-              <option value="2035">2035</option>
-            </select>
-            <br>
-            <span class="err err_moisExpiration" role="alert"></span>
-            <br>
-            <span class="err err_anneeExpiration" role="alert"></span>
+              <label for="anneeExpiration" class="sr-only">Année</label>
+              <select
+                class="border-2 border-black-500 p-2 w-fit mb-2 bg-white"
+                id="anneeExpiration"
+                name="anneeExpiration"
+                aria-required="true"
+                aria-describedby="err_anneeExpiration"
+                aria-invalid="false"
+                required
+              >
+                <option value="" disabled selected>Année</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+                <option value="2033">2033</option>
+                <option value="2034">2034</option>
+                <option value="2035">2035</option>
+              </select>
+              <br />
+              <span class="err err_moisExpiration" role="alert"></span>
+              <br />
+              <span class="err err_anneeExpiration" role="alert"></span>
             </div>
 
             <label for="codeSecuriteCarte" class="font-bold"
@@ -532,9 +532,64 @@
           </button>
         </section>
 
-        <!------------- Dernière Section: Validation ------------->
+        <!------------- Dernière Section: Confirmation ------------->
         <section id="section3">
-          <h2 class="text-2xl font-bold m-4 text-center">Validation</h2>
+          <h2 class="text-2xl font-bold m-4 text-center">Confirmation</h2>
+
+          <div class="border border-solid border-black p-2 mb-4">
+            <ul>
+              <li class="flex justify-between gap-4">
+                <span>Type de don:</span>
+                <span id="confirmationTypeDon"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Montant du don:</span>
+                <span id="confirmationMontantDon"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Montant total pour l'année:</span>
+                <span id="confirmationMontantTotal"></span>
+              </li>
+              <br />
+              <li class="flex justify-between gap-4">
+                <span>Nom:</span>
+                <span id="confirmationNom"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Prenom:</span>
+                <span id="confirmationPrenom"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Adresse:</span>
+                <span id="confirmationAdresse"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Ville:</span>
+                <span id="confirmationVille"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Province:</span>
+                <span id="confirmationProvince"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Code Postal:</span>
+                <span id="confirmationCodePostal"></span>
+              </li>
+              <br />
+              <li class="flex justify-between gap-4">
+                <span>Numéro de carte:</span>
+                <span id="confirmationNumeroCarte"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Date d'expiration:</span>
+                <span id="confirmationDateExpiration"></span>
+              </li>
+              <li class="flex justify-between gap-4">
+                <span>Code de sécurité:</span>
+                <span id="confirmationCodeSecurite"></span>
+              </li>
+            </ul>
+          </div>
 
           <input
             id="etape3"

@@ -4,10 +4,51 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="script" href="main.ts" defer>
+    <link rel="script" href="main.ts" defer />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulaire de don</title>
   </head>
   <body>
-    
+    <body class="m-auto flex flex-col items-center justify-center">
+      <!-- //Icone -->
+      <div class="p-4 center">
+        <img src="./public/logo.png" alt="Ecosia" />
+      </div>
+
+      <!-- //Titre Page -->
+      <div class="bg-lime-800 w-screen m-2">
+        <h1 class="text-4xl font-bold m-10 text-center text-white">
+          Merci de votre don!
+        </h1>
+      </div>
+
+      <!-- //Main -->
+      <main class="w-screen mt-4 p-3 flex justify-center gap-4">
+        <!-- Image en écran large -->
+        <div class="hidden min-md:block">
+          <img
+            src="./public/imageMerci.avif"
+            alt=""
+            class="object-cover rounded-[20px] w-fit h-full min-xl:max-w-xl"
+          />
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold m-4 text-center">Votre don est plus que de l’argent.</h2>
+          <p class="mb-4">
+            Votre don, c’est aussi une façon de soutenir l’environnement, avec des actions
+            qui parlent:
+            <ul>
+              <li>- Nombre d’arbre planté cette année</li>
+              <li>- La création d’emplois qui visent à aider notre planète.</li>
+              <li>- Des plantes locales ajoutés à leur environnement</li>
+            </ul>
+          </p>
+        </div>
+      </main>
+
+      <div id="app"></div>
+      <script type="module" src="/src/main.ts"></script>
+    </body>
   </body>
+</html>
