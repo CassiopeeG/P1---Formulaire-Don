@@ -1,12 +1,47 @@
 @import "tailwindcss";
 
-/* Interativitée */
+/* MESSAGES D'ERREURS */
 .err {
   color: red;
 }
 
+/* NAVIGATION D'ÉTAPES */
 ol li img:hover {
   filter: brightness(80%);
+}
+
+/* ÉTATS FOCUS DES LIENS */
+a:focus img{
+  outline: solid darkgreen 2px;
+  outline-offset: 2px;
+  border-radius: 100%;
+}   
+
+a:focus-visible{
+  outline: none;
+}
+
+/* CHAMPS */
+input:focus {
+  outline: solid oklch(62.7% 0.194 149.214) 2px;
+}
+
+input[type="radio"]{
+  outline: none;
+}
+
+/* BOUTONS RADIO */
+input[type="radio"]:checked+label {
+  background-color: #d2ed70;
+}
+
+input[type="radio"]:hover+label {
+  background-color: #e5ff88;
+}
+
+input[type="radio"]:focus+label {
+  outline: solid darkgreen 2px;
+  outline-offset: 2px;
 }
 
 .active {
@@ -25,22 +60,11 @@ ol li img:hover {
   border-color: #d2ed70;
 }
 
+/* COULEURS */
 .bg-vert {
   background-color: #d2ed70;
 }
 
 .bg-grisPale {
   background-color: #f8f8f6;
-}
-
-input[type="radio"]:checked+label {
-  background-color: #d2ed70;
-}
-
-input[type="radio"]:hover+label {
-  background-color: #e5ff88;
-}
-
-:focus{
-  border: none;
 }
