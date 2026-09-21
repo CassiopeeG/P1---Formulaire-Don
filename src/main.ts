@@ -34,8 +34,12 @@ for (let index = 0; index < nbrEtapes; index++) {
 
 //ÉLÉMENTS DU FORMULAIRE
 let champs = document.querySelectorAll("input");
-const refVersement = document.getElementsByName("versement");
-const refMontant = document.getElementsByName("montant");
+const refVersement = document.querySelectorAll<HTMLInputElement>(
+  '[name="versement"]',
+);
+const refMontant = document.querySelectorAll<HTMLInputElement>(
+  '[name="montant"]',
+);
 const champErrVersement = document.querySelector(
   ".err_versement",
 ) as HTMLInputElement;
@@ -94,7 +98,7 @@ function validerEtape(): void {
       );
       //Afficher msg erreur versement
       if (!versementValide && champErrVersement) {
-        champErrVersement.innerText = messagesJSON.versement.vide;
+        champErrVersement.innerText = messagesJSON.versement.vide ?? "";
       } else {
         champErrVersement.innerText = "";
       }
@@ -105,7 +109,7 @@ function validerEtape(): void {
       );
       //Afficher msg erreur montant
       if (!montantValide && champErrMontant) {
-        champErrMontant.innerText = messagesJSON.montant.vide;
+        champErrMontant.innerText = messagesJSON.montant.vide ?? "";
       } else {
         champErrMontant.innerText = "";
       }
@@ -204,7 +208,7 @@ function afficherConfirmation() {
   refVersement.forEach((inputRadio) => {
     if (inputRadio.checked) {
       let typeVersement = inputRadio.value.slice(9);
-      document.getElementById("confirmationTypeDon").innerText = typeVersement;
+      document.getElementById("confirmationTypeDon")!.innerText = typeVersement;
     }
   });
   refMontant.forEach((inputRadio) => {
@@ -212,28 +216,28 @@ function afficherConfirmation() {
 
     if (inputRadio.checked) {
       if ((inputRadio.value = "montantPersonnalise")) {
-        document.getElementById("confirmationMontantDon").innerText =
+        document.getElementById("confirmationMontantDon")!.innerText =
           refMontantPerso.value + " $";
       } else {
-        document.getElementById("confirmationMontantDon").innerText =
+        document.getElementById("confirmationMontantDon")!.innerText =
           inputRadio.value + " $";
       }
     }
   });
 
-  document.getElementById("confirmationNom").innerText = refNom.value;
-  document.getElementById("confirmationPrenom").innerText = refPrenom.value;
-  document.getElementById("confirmationAdresse").innerText = refAdresse.value;
-  document.getElementById("confirmationVille").innerText = refVille.value;
-  document.getElementById("confirmationProvince").innerText = refProvince.value;
-  document.getElementById("confirmationCodePostal").innerText =
+  document.getElementById("confirmationNom")!.innerText = refNom.value;
+  document.getElementById("confirmationPrenom")!.innerText = refPrenom.value;
+  document.getElementById("confirmationAdresse")!.innerText = refAdresse.value;
+  document.getElementById("confirmationVille")!.innerText = refVille.value;
+  document.getElementById("confirmationProvince")!.innerText = refProvince.value;
+  document.getElementById("confirmationCodePostal")!.innerText =
     refCodePostal.value;
 
-  document.getElementById("confirmationNumeroCarte").innerText =
+  document.getElementById("confirmationNumeroCarte")!.innerText =
     "**** **** ****" + refNumeroCarte.value.slice(14);
-  document.getElementById("confirmationDateExpiration").innerText =
+  document.getElementById("confirmationDateExpiration")!.innerText =
     refMoisExpiration.value + "/" + refAnneeExpiration.value;
-  document.getElementById("confirmationCodeSecurite").innerText =
+  document.getElementById("confirmationCodeSecurite")!.innerText =
     refCodeSecuriteCarte.value;
 }
 
@@ -284,7 +288,10 @@ function revenirEtapePrecedente(event: MouseEvent): void {
   const nbrEtapeVisee: number = parseInt(target.id.slice(15));
 
   //Si l'étape est approuvée
-  let classListNavEtape = target.parentElement.classList;
+  const parent = target.parentElement;
+  if (!parent) return;
+
+  let classListNavEtape = parent.classList;
   console.log("Ok " + classListNavEtape);
   if (classListNavEtape.contains("success")) {
     etape = nbrEtapeVisee;
@@ -297,11 +304,11 @@ function revenirEtapePrecedente(event: MouseEvent): void {
   // afficherConfirmation();
 }
 
-function validerBlur(e) {
-  validerChamp(e.currentTarget);
+function validerBlur(e: Event): void {
+  validerChamp(e.currentTarget as HTMLInputElement);
 }
 
-function mettreMontantPerso(e) {
+function mettreMontantPerso(): void {
   // let montant = refMontantPerso.value
   // console.log("MONTANT = " + montant)
 
@@ -313,20 +320,22 @@ function mettreMontantPerso(e) {
   });
 }
 
-function afficherInformationVersement(e) {
-  if (e.currentTarget.name == "versement") {
+function afficherInformationVersement(e: Event): void {
+  const input = e.currentTarget as HTMLInputElement;
+  if (input.name == "versement") {
     let pInfoVersement = document.getElementById("p-infoVersement");
-    pInfoVersement?.parentNode.classList.remove("hidden");
+    if (!pInfoVersement) return;
+    pInfoVersement.parentElement?.classList.remove("hidden");
 
     //Afficher le bon message selon le type de versement choisi
-    switch (e.currentTarget.id) {
+    switch (input.id) {
       case "versementUnique":
         pInfoVersement.innerText =
           "Un don unique est envoyé immédiatement, sans récurrence.";
         break;
 
       case "versementMensuel":
-        let strMontant = e.currentTarget.value;
+        let strMontant = input.value;
         console.log(strMontant);
         pInfoVersement.innerText =
           "Un don mensuel vous est chargé le premier de chaque mois pour les 12 prochains mois.";
