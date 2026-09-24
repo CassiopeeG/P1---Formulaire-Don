@@ -3,6 +3,8 @@
 /* MESSAGES D'ERREURS */
 .err {
   color: red;
+  display: flex;
+  gap: 5px;
 }
 
 /* NAVIGATION D'ÉTAPES */

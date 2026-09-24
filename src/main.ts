@@ -1,3 +1,5 @@
+//@author: Cassiopée Gariépy
+
 import "./style.css";
 let etape: number;
 interface messageErreur {
@@ -5,6 +7,9 @@ interface messageErreur {
   pattern?: string;
   type?: string;
 }
+
+let iconeErr = "<img src='./public/erreur.svg' alt='' class='w-4'>";
+
 interface erreursJSON {
   [fieldName: string]: messageErreur;
 }
@@ -34,12 +39,10 @@ for (let index = 0; index < nbrEtapes; index++) {
 
 //ÉLÉMENTS DU FORMULAIRE
 let champs = document.querySelectorAll("input");
-const refVersement = document.querySelectorAll<HTMLInputElement>(
-  '[name="versement"]',
-);
-const refMontant = document.querySelectorAll<HTMLInputElement>(
-  '[name="montant"]',
-);
+const refVersement =
+  document.querySelectorAll<HTMLInputElement>('[name="versement"]');
+const refMontant =
+  document.querySelectorAll<HTMLInputElement>('[name="montant"]');
 const champErrVersement = document.querySelector(
   ".err_versement",
 ) as HTMLInputElement;
@@ -98,7 +101,7 @@ function validerEtape(): void {
       );
       //Afficher msg erreur versement
       if (!versementValide && champErrVersement) {
-        champErrVersement.innerText = messagesJSON.versement.vide ?? "";
+        champErrVersement.innerHTML = iconeErr + messagesJSON.versement.vide;
       } else {
         champErrVersement.innerText = "";
       }
@@ -109,13 +112,11 @@ function validerEtape(): void {
       );
       //Afficher msg erreur montant
       if (!montantValide && champErrMontant) {
-        champErrMontant.innerText = messagesJSON.montant.vide ?? "";
+        champErrMontant.innerHTML = iconeErr + messagesJSON.montant.vide;
       } else {
         champErrMontant.innerText = "";
       }
-
       if (!versementValide || !montantValide) {
-        console.log("Attention, erreur");
         etape0Valide = false;
         arrBtnNav[etape].parentNode.classList.remove("success");
       } else {
@@ -146,7 +147,6 @@ function validerEtape(): void {
         !provinceValide ||
         !codePostalValide
       ) {
-        console.log("Attention, erreur");
         arrBtnNav[etape].parentNode.classList.remove("success");
         etape1Valide = false;
       } else {
@@ -169,7 +169,6 @@ function validerEtape(): void {
         !anneeExpirationValide ||
         !codeSecuriteCarteValide
       ) {
-        console.log("Attention, erreur");
         arrBtnNav[etape].parentNode.classList.remove("success");
         etape2Valide = false;
       } else {
@@ -182,7 +181,6 @@ function validerEtape(): void {
       break;
 
     case 3:
-      console.log("validation");
       etape = 0;
       validerEtape();
       etape = 1;
@@ -195,7 +193,6 @@ function validerEtape(): void {
         etape1Valide == true &&
         etape2Valide == true
       ) {
-        console.log("valide");
       }
       break;
 
@@ -212,8 +209,6 @@ function afficherConfirmation() {
     }
   });
   refMontant.forEach((inputRadio) => {
-    console.log("value = " + inputRadio.value);
-
     if (inputRadio.checked) {
       if ((inputRadio.value = "montantPersonnalise")) {
         document.getElementById("confirmationMontantDon")!.innerText =
@@ -229,7 +224,8 @@ function afficherConfirmation() {
   document.getElementById("confirmationPrenom")!.innerText = refPrenom.value;
   document.getElementById("confirmationAdresse")!.innerText = refAdresse.value;
   document.getElementById("confirmationVille")!.innerText = refVille.value;
-  document.getElementById("confirmationProvince")!.innerText = refProvince.value;
+  document.getElementById("confirmationProvince")!.innerText =
+    refProvince.value;
   document.getElementById("confirmationCodePostal")!.innerText =
     refCodePostal.value;
 
@@ -249,34 +245,21 @@ function validerChamp(champ: HTMLInputElement): boolean {
     idMessageErreur,
   ) as HTMLSpanElement;
 
-  console.log(
-    "Dans valider Champ, champ testé = " +
-      name +
-      ". Validity = " +
-      champ.validity,
-  );
-
   // Vérifie chaque type d'erreur de validation
   if (champ.validity.valueMissing && messagesJSON[name].vide) {
     valide = false;
-    console.log(
-      "erreurElement= " +
-        erreurElement +
-        " idMessageErreur = " +
-        idMessageErreur,
-    );
-    erreurElement.innerText = messagesJSON[name].vide;
+    erreurElement.innerHTML = iconeErr + messagesJSON[name].vide;
   } else if (champ.validity.typeMismatch && messagesJSON[name].type) {
     // Type de données incorrect (email, url, tel, etc.)
     valide = false;
-    erreurElement.innerText = messagesJSON[name].type;
+    erreurElement.innerHTML = iconeErr + messagesJSON[name].type;
   } else if (champ.validity.patternMismatch && messagesJSON[name].pattern) {
     // Ne correspond pas au pattern regex défini
     valide = false;
-    erreurElement.innerText = messagesJSON[name].pattern;
+    erreurElement.innerHTML = iconeErr + messagesJSON[name].pattern;
   } else {
     // La validation n'a pas d'erreur, donc on assigne la variable vraie
-    erreurElement.innerText = "";
+    erreurElement.innerHTML = "";
     valide = true;
   }
 
@@ -292,7 +275,6 @@ function revenirEtapePrecedente(event: MouseEvent): void {
   if (!parent) return;
 
   let classListNavEtape = parent.classList;
-  console.log("Ok " + classListNavEtape);
   if (classListNavEtape.contains("success")) {
     etape = nbrEtapeVisee;
     afficherEtape();
@@ -309,12 +291,8 @@ function validerBlur(e: Event): void {
 }
 
 function mettreMontantPerso(): void {
-  // let montant = refMontantPerso.value
-  // console.log("MONTANT = " + montant)
-
   refMontant.forEach((inputRadio) => {
     if (inputRadio.checked) {
-      console.log("Valeur, " + inputRadio.value);
       refMontantPerso.value = inputRadio.value;
     }
   });
@@ -336,7 +314,6 @@ function afficherInformationVersement(e: Event): void {
 
       case "versementMensuel":
         let strMontant = input.value;
-        console.log(strMontant);
         pInfoVersement.innerText =
           "Un don mensuel vous est chargé le premier de chaque mois pour les 12 prochains mois.";
         break;

@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="script" href="main.ts" defer   />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/public/favicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Formulaire de don pour Ecosia">
+    <meta name="keywords" content="don, ecosia">
     <title>Formulaire de don</title>
   </head>
   <body class="m-auto flex flex-col items-center justify-center">
@@ -27,28 +28,28 @@
         <!-- <ol class="flex justify-center gap-3 max-w-screen"> -->
         <ol class="flex justify-center items-center gap-2">
           <li class="w-10">
-            <span class="sr-only">Lien Étape 0 - Montant</span>
+            <p class="sr-only">Lien Étape 0 - Montant</p>
             <a href="#section00" id="navEtapes_etape0">
               <img src="./public/montant.svg" alt="" />
             </a>
           </li>
-          <span><img src="./public/fleche.svg" alt="" /></span>
+          <p><img src="./public/fleche.svg" alt="" /></p>
           <li class="w-10">
-            <span class="sr-only">Lien Étape 1 - Coordonnées</span>
+            <p class="sr-only">Lien Étape 1 - Coordonnées</p>
             <a href="#section01" id="navEtapes_etape1">
               <img src="./public/information.svg" alt="" />
             </a>
           </li>
-          <span><img src="./public/fleche.svg" alt="" /></span>
+          <p><img src="./public/fleche.svg" alt="" /></p>
           <li class="w-10">
-            <span class="sr-only">Lien Étape 2 - Paiement</span>
+            <p class="sr-only">Lien Étape 2 - Paiement</p>
             <a href="#section02" id="navEtapes_etape2">
               <img src="./public/paiement.svg" alt="" />
             </a>
           </li>
-          <span><img src="./public/fleche.svg" alt="" /></span>
+          <p><img src="./public/fleche.svg" alt="" /></p>
           <li class="w-10">
-            <span class="sr-only">Lien Étape 3 - Validation</span>
+            <p class="sr-only">Lien Étape 3 - Validation</p>
             <a href="#section03" id="navEtapes_etape3">
               <img src="./public/validation.svg" alt="" />
             </a>
@@ -85,6 +86,7 @@
             >
               <legend class="font-bold mb-1">Type de versement</legend>
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 required
@@ -99,6 +101,7 @@
               ><br />
 
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 aria-invalid="false"
@@ -112,6 +115,7 @@
               ><br />
 
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 aria-invalid="false"
@@ -124,6 +128,7 @@
                 >Annuel</label
               ><br />
             </fieldset>
+            
             <span class="err err_versement mb-4" role="alert"></span>
 
             <div
@@ -147,6 +152,7 @@
             >
               <legend class="font-bold mb-1">Montant</legend>
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 required
@@ -162,6 +168,7 @@
               ><br />
 
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 aria-describedby="err_montant50"
@@ -176,6 +183,7 @@
               ><br />
 
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 aria-describedby="err_montant100"
@@ -190,6 +198,7 @@
               ><br />
 
               <input
+                aria-live="polite"
                 class="w-0"
                 type="radio"
                 aria-describedby="err_montant200"
@@ -205,6 +214,7 @@
 
               <div class="flex w-full h-10 mt-2">
                 <input
+                  aria-live="polite"
                   class="w-0"
                   type="radio"
                   aria-describedby="err_montantPersonnalise"
@@ -223,7 +233,11 @@
                 <div
                   class="flex-auto border-1 border-black-500 bg-white p-2 flex h-10 rounded-tr-[10px] rounded-br-[10px]"
                 >
+                  <label for="montantPerso" class="sr-only"
+                    >Inscrire le montant personalité</label
+                  >
                   <input
+                    aria-live="polite"
                     class="w-full montantPerso"
                     inputmode="decimal"
                     type="number"
@@ -231,7 +245,6 @@
                     name="montantPerso"
                     min="0"
                     max="999999"
-                    size="6"
                     required
                     step="0.01"
                     title="Veuillez confirmer votre montant"
@@ -264,6 +277,7 @@
               <!-- Nom -->
               <label for="nom">Nom</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="text"
                 id="nom"
@@ -283,6 +297,7 @@
               <!-- Prenom -->
               <label for="prenom">Prenom</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="text"
                 id="prenom"
@@ -302,6 +317,7 @@
               <!-- Email -->
               <label for="email">Email</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="email"
                 id="email"
@@ -321,6 +337,7 @@
               <!-- Téléphone -->
               <label for="telephone">Téléphone</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="tel"
                 id="telephone"
@@ -342,6 +359,7 @@
             <div class="flex flex-col mb-2">
               <label for="adresse">Adresse</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="text"
                 id="adresse"
@@ -350,7 +368,7 @@
                 aria-required="true"
                 aria-describedby="err_adresse"
                 aria-invalid="false"
-                autocomplete="street-address"
+                autocomplete="address-line1"
                 pattern="^[0-9]+[a-zA-ZÀ-ÿ0-9 \-]+$"
               />
               <span class="err err_adresse" role="alert"></span>
@@ -359,6 +377,7 @@
             <div class="flex flex-col mb-2">
               <label for="ville">Ville</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="text"
                 id="ville"
@@ -368,6 +387,7 @@
                 aria-describedby="err_ville"
                 aria-invalid="false"
                 pattern="^[a-zA-ZÀ-ÿ0-9 '\-]+$"
+                autocomplete="home city"
               />
               <span class="err err_ville" role="alert"></span>
             </div>
@@ -375,6 +395,7 @@
             <div class="flex flex-col mb-2">
               <label for="province">Province</label>
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="text"
                 id="province"
@@ -384,6 +405,7 @@
                 aria-describedby="err_province"
                 aria-invalid="false"
                 pattern="^[[\p{L}\s'\-]+]{2,}$"
+                autocomplete="address-level1"
               />
               <span class="err err_province" role="alert"></span>
             </div>
@@ -393,6 +415,7 @@
                 >Code Postal <small>ex: A1A 1A1</small></label
               >
               <input
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 bg-white"
                 type="text"
                 id="codePostal"
@@ -430,8 +453,9 @@
               >Numéro de la carte</label
             >
             <input
+              aria-live="polite"
               class="border-2 border-black-500 p-2 bg-white"
-              type="texte"
+              type="text"
               inputmode="numeric"
               pattern="^[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}[ ]?[0-9]{4}$"
               id="numeroCarte"
@@ -450,6 +474,7 @@
             <div>
               <label for="moisExpiration" class="sr-only">Mois</label>
               <select
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 w-fit mr-2 bg-white"
                 id="moisExpiration"
                 name="moisExpiration"
@@ -475,6 +500,7 @@
 
               <label for="anneeExpiration" class="sr-only">Année</label>
               <select
+                aria-live="polite"
                 class="border-2 border-black-500 p-2 w-fit mb-2 bg-white"
                 id="anneeExpiration"
                 name="anneeExpiration"
@@ -506,6 +532,7 @@
               >Code de sécurité</label
             >
             <input
+              aria-live="polite"
               class="border-2 border-black-500 p-2 w-15 bg-white"
               type="text"
               inputmode="numeric"
@@ -549,7 +576,6 @@
                 <span>Montant total pour l'année:</span>
                 <span id="confirmationMontantTotal"></span>
               </li>
-              <br />
               <li class="flex justify-between gap-4">
                 <span>Nom:</span>
                 <span id="confirmationNom"></span>
@@ -574,7 +600,6 @@
                 <span>Code Postal:</span>
                 <span id="confirmationCodePostal"></span>
               </li>
-              <br />
               <li class="flex justify-between gap-4">
                 <span>Numéro de carte:</span>
                 <span id="confirmationNumeroCarte"></span>
@@ -591,14 +616,18 @@
           </div>
 
           <div class="my-5">
-            <input for="infolettre" type="checkbox" aria-describedby="err_montant20"
-                aria-invalid="false"
-                id="abonneeInfolettre"
-                name="abonneeInfolettre"
-                value="abonneeInfolettre">
-              <label
-                for="abonneeInfolettre"
-                >Je souhaite m'abonner à l'infolettre</label>
+            <input
+              aria-live="polite"
+              type="checkbox"
+              aria-describedby="err_montant20"
+              aria-invalid="false"
+              id="abonneeInfolettre"
+              name="abonneeInfolettre"
+              value="abonneeInfolettre"
+            />
+            <label for="abonneeInfolettre"
+              >Je souhaite m'abonner à l'infolettre</label
+            >
           </div>
 
           <input
@@ -610,6 +639,10 @@
         </section>
       </form>
     </main>
+
+    <footer class="bg-lime-700 w-full mt-10 p-10 text-center text-white">
+      <p>Site réalisé dans le cadre du cour de RPNI 3, par Cassiopée Gariépy. 2026</p>
+    </footer>
 
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
